@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+var port = 1337;
+var app = require('..').loadApp();
+
+app.listen(port);
+console.log("server running at http://127.0.0.1:" + port);
