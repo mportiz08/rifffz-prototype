@@ -1,0 +1,102 @@
+html, body {
+  background: url("/images/bg.png");
+  color: #fff;
+  height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #fff;
+}
+
+#player {
+  background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  height: 100%;
+  width: 100%;
+}
+
+.label {
+  vertical-align: middle;
+}
+
+.top-bar .search, .top-bar .controls {
+  height: 45px;
+  padding: 15px;
+}
+
+.top-bar .search {
+  text-align: right;
+}
+
+.top-bar .search input {
+  background: #fff url("/images/search-icon.png") 5px 3px no-repeat;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 #f1f1f1,inset 0 1px 1px #e0e0e0;
+  color: #999;
+  font-size: 14px;
+  padding: 5px 5px 5px 30px;
+  width: 423px;
+}
+
+.album-cover {
+  background: url("/images/folder.tmp.jpg") no-repeat center center;
+  background-size: contain;
+  border: 2px solid #000;
+  border-radius: 6px;
+  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.75);
+  height: 450px;
+  width: 450px;
+}
+
+.album-cover-overlay {
+  background: -webkit-linear-gradient(top left, rgba(255, 255, 255, 0.75) 20px, rgba(0, 0, 0, 0) 60%);
+  height: 100%;
+}
+
+.album-info {
+  text-align: right;
+}
+
+.album-info h1 {
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.75);
+}
+
+.album-info h2 {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+}
+
+.album-info h2 .label {
+  font-size: 12px;
+}
+
+.album-info h1 {
+  font-size: 36px;
+}
+
+.album-info h2 {
+  color: #eee;
+}
+
+.album-info .album-year-released {
+  color: #aaa;
+  font-weight: normal;
+}
+
+.album-song-list {
+  font-size: 18px;
+  padding-top: 25px;
+}
+
+.album-song-list li {
+  color: #aaa;
+  line-height: 22px;
+  padding: 2px 0;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+}
+
+.album-song-list .now-playing {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+}
