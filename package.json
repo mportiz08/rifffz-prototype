@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "author": "Marcus Ortiz",
   "dependencies": {
-    "express": "2.5.4"
+    "express": "2.5.4",
+    "jade": "0.20.0"
   },
   "devDependencies": {
     "coffee-script": "1.2.0"
