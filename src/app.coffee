@@ -7,6 +7,9 @@ app.use express.static "#{__dirname}/public"
 
 app.get '/', (req, res) ->
   res.render 'index'
+  
+app.get '/album', (req, res) ->
+  res.render 'album'
 
 # temporary of course, just testing things out
 app.get '/test', (req, res) ->
