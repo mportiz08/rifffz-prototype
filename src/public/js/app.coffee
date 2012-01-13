@@ -1,14 +1,17 @@
-$ ->
-  class window.Router extends Backbone.Router
+$ ->  
+  class Album extends Backbone.Model
+    initialize: ->
+      # TODO
+  
+  class Router extends Backbone.Router
     routes:
       "album/:artist/:album": "album"
     
-    album: (artist, album) ->
-      console.log artist + ', ' + album
+    album: (artistName, albumName) ->
+      console.log 'album route called with: ' + artistName + ', ' + albumName
+      $.get "/api/album/#{artistName}/#{albumName}", (data, textStatus, jqXHR) ->
+        album = new Album songs: data.album.songs
+        console.log album
   
-  class window.AppView extends Backbone.View
-    el: $('#main.container')
-  
-  window.app = new AppView
   window.router = new Router
   Backbone.history.start()
