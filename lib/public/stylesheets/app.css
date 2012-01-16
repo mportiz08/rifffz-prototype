@@ -14,27 +14,61 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
+#main.container {
+  padding-top: 75px;
+}
+
 .label {
   vertical-align: middle;
 }
 
-.top-bar .search, .top-bar .controls {
-  height: 45px;
+.top-bar {
+  background: #222;
+  height: 15px;
   padding: 15px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
 }
 
-.top-bar .search {
+.progress {
   text-align: right;
 }
 
-.top-bar .search input {
-  background: #fff url("/images/search-icon.png") 5px 3px no-repeat;
-  border-radius: 6px;
-  box-shadow: 0 1px 0 #f1f1f1,inset 0 1px 1px #e0e0e0;
-  color: #999;
-  font-size: 14px;
-  padding: 5px 5px 5px 30px;
-  width: 423px;
+.progress-bar {
+  /*width: 350px;*/
+  width: 100%;
+  height: 5px;
+  background: rgba(0,0,0,.4);
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  border-top: 1px solid rgba(0,0,0,.5);
+  border-bottom: 1px solid rgba(255,255,255,.2);
+  padding: 4px 5px 5px;
+  display: inline-block;
+}
+
+.progress-bar span {
+  height: 100%;
+  display: block;
+  background: #ddd1ff;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  -webkit-animation: pulse1 .6s infinite, grow .5s ease-out;
+  -moz-animation: pulse1 .6s infinite, grow .5s ease-out;
+  -ms-animation: pulse1 .6s infinite, grow .5s ease-out;
+  -o-animation: pulse1 .6s infinite, grow .5s ease-out;
+  animation: pulse1 .6s infinite, grow .5s ease-out;
+}
+
+@-webkit-keyframes grow {
+  0% {width: 0;}
+}
+
+@-moz-keyframes grow {
+  0% {width: 0;}
 }
 
 .album-cover {
