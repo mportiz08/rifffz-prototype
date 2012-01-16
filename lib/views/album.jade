@@ -1,15 +1,19 @@
 div#player
+  div.top-bar
+    div.container
+      div.row
+        div.span8.controls
+          ul.unstyled
+            li
+              a(href="#").sprite-icons-Back
+            li
+              a(href="#").sprite-icons-Play
+            li
+              a(href="#").sprite-icons-Next
+        div.span8.progress
+          div.progress-bar
+            span(style="width: 75%;")
   div#main.container
-    div.top-bar.row
-      div.span8
-        div.controls
-          audio(controls="controls")
-            source(src="/test", type="audio/mpeg")
-            Your browser does not support the audio element.
-      div.span8
-        div.search
-          form
-            input(type="text")
     div.row
       div.span8
         div.album-cover

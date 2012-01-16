@@ -14,33 +14,78 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
+#main.container {
+  padding-top: 75px;
+}
+
 .label {
   vertical-align: middle;
 }
 
-.top-bar .search, .top-bar .controls {
-  height: 45px;
+.top-bar {
+  background: rgba(34, 34, 34, 0.75);
+  border-bottom: 2px solid #222;
+  height: 15px;
   padding: 15px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
 }
 
-.top-bar .search {
+.controls li {
+  display: inline-block;
+  padding-right: 16px;
+}
+
+.controls li a {
+  display: block;
+  height: 16px;
+  width: 16px;
+}
+
+.progress {
   text-align: right;
 }
 
-.top-bar .search input {
-  background: #fff url("/images/search-icon.png") 5px 3px no-repeat;
-  border-radius: 6px;
-  box-shadow: 0 1px 0 #f1f1f1,inset 0 1px 1px #e0e0e0;
-  color: #999;
-  font-size: 14px;
-  padding: 5px 5px 5px 30px;
-  width: 423px;
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background: rgba(0,0,0,.4);
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  border-top: 1px solid rgba(0,0,0,.5);
+  border-bottom: 1px solid rgba(255,255,255,.2);
+  padding: 4px 5px 5px;
+  display: inline-block;
+}
+
+.progress-bar span {
+  height: 100%;
+  display: block;
+  background: #ddd1ff;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  -webkit-animation: pulse1 .6s infinite, grow .5s ease-out;
+  -moz-animation: pulse1 .6s infinite, grow .5s ease-out;
+  -ms-animation: pulse1 .6s infinite, grow .5s ease-out;
+  -o-animation: pulse1 .6s infinite, grow .5s ease-out;
+  animation: pulse1 .6s infinite, grow .5s ease-out;
+}
+
+@-webkit-keyframes grow {
+  0% {width: 0;}
+}
+
+@-moz-keyframes grow {
+  0% {width: 0;}
 }
 
 .album-cover {
   background: url("/images/folder.tmp.jpg") no-repeat center center;
   background-size: contain;
-  border: 2px solid #000;
+  border: 2px solid #222;
   border-radius: 6px;
   box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.75);
   height: 450px;
@@ -100,3 +145,440 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 0;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
 }
+
+.sprite-icons-Wikipedia,
+.sprite-icons-Wifi,
+.sprite-icons-Waterdrop,
+.sprite-icons-Warning,
+.sprite-icons-VolumeUp,
+.sprite-icons-VolumeDown,
+.sprite-icons-Vimeo,
+.sprite-icons-Videocam,
+.sprite-icons-User2,
+.sprite-icons-User,
+.sprite-icons-USB,
+.sprite-icons-Upload,
+.sprite-icons-Underlined,
+.sprite-icons-Twitter,
+.sprite-icons-Turn,
+.sprite-icons-TurnRight,
+.sprite-icons-TurnOff,
+.sprite-icons-TurnOff2,
+.sprite-icons-TurnLeft,
+.sprite-icons-Turn2,
+.sprite-icons-tumblr,
+.sprite-icons-Triangle,
+.sprite-icons-TriangleLine,
+.sprite-icons-Trails,
+.sprite-icons-ThumbUp,
+.sprite-icons-ThumbDown,
+.sprite-icons-Textfield,
+.sprite-icons-Tag,
+.sprite-icons-Tablet,
+.sprite-icons-Table,
+.sprite-icons-Sync,
+.sprite-icons-Study,
+.sprite-icons-Stop,
+.sprite-icons-Star,
+.sprite-icons-StarLine,
+.sprite-icons-Stamp,
+.sprite-icons-SpeechBubble,
+.sprite-icons-Smiley,
+.sprite-icons-Shuffle,
+.sprite-icons-ShowRight,
+.sprite-icons-Show,
+.sprite-icons-Shortcut,
+.sprite-icons-ShoppingCart,
+.sprite-icons-ShoppingBasket,
+.sprite-icons-Settings2,
+.sprite-icons-Settings,
+.sprite-icons-Search,
+.sprite-icons-SDCard,
+.sprite-icons-Safari,
+.sprite-icons-Ruler,
+.sprite-icons-RSS,
+.sprite-icons-RoundedRectangle,
+.sprite-icons-RoundedRectangleLine,
+.sprite-icons-Right-Adjusted,
+.sprite-icons-RightArrow,
+.sprite-icons-Reply,
+.sprite-icons-ReplyToAll,
+.sprite-icons-Reply2,
+.sprite-icons-Replay,
+.sprite-icons-Remove,
+.sprite-icons-Remove2,
+.sprite-icons-Reload,
+.sprite-icons-Rectangle,
+.sprite-icons-RectangleLine,
+.sprite-icons-Printer2,
+.sprite-icons-Printer1,
+.sprite-icons-Printer,
+.sprite-icons-Price,
+.sprite-icons-Postboxes,
+.sprite-icons-Postbox,
+.sprite-icons-Polygon,
+.sprite-icons-PolygonLine,
+.sprite-icons-Podcast,
+.sprite-icons-Play,
+.sprite-icons-Plane,
+.sprite-icons-Pin2,
+.sprite-icons-Pin,
+.sprite-icons-Picture,
+.sprite-icons-Phone,
+.sprite-icons-Phone2,
+.sprite-icons-Pen,
+.sprite-icons-Pause,
+.sprite-icons-Paperclip,
+.sprite-icons-Notes,
+.sprite-icons-Notes2,
+.sprite-icons-Next,
+.sprite-icons-Music,
+.sprite-icons-Movie,
+.sprite-icons-Moveforeward,
+.sprite-icons-Movebackward,
+.sprite-icons-Mouse,
+.sprite-icons-Microphone,
+.sprite-icons-Microphone2,
+.sprite-icons-Mail,
+.sprite-icons-MailOpened,
+.sprite-icons-Lock,
+.sprite-icons-Locate,
+.sprite-icons-List2,
+.sprite-icons-List,
+.sprite-icons-Light,
+.sprite-icons-Library,
+.sprite-icons-Left-Adjusted,
+.sprite-icons-LeftArrow,
+.sprite-icons-Laptop,
+.sprite-icons-Keyhole,
+.sprite-icons-Keyboard,
+.sprite-icons-Key,
+.sprite-icons-Italic,
+.sprite-icons-iPodShuffle,
+.sprite-icons-iPodNano,
+.sprite-icons-Invite,
+.sprite-icons-Instapaper,
+.sprite-icons-Info,
+.sprite-icons-Home,
+.sprite-icons-HideLeft,
+.sprite-icons-Hide,
+.sprite-icons-Help,
+.sprite-icons-Heart,
+.sprite-icons-Headphones,
+.sprite-icons-Grid2,
+.sprite-icons-Grid,
+.sprite-icons-Google,
+.sprite-icons-Globe,
+.sprite-icons-Globe2,
+.sprite-icons-Glasses2,
+.sprite-icons-Glasses,
+.sprite-icons-Gift,
+.sprite-icons-Geo,
+.sprite-icons-Genius2,
+.sprite-icons-Genius,
+.sprite-icons-Fullscreen,
+.sprite-icons-FullscreenOff,
+.sprite-icons-FullJustification,
+.sprite-icons-Forrst,
+.sprite-icons-Form,
+.sprite-icons-Folder,
+.sprite-icons-FolderAdd,
+.sprite-icons-Flickr,
+.sprite-icons-Flag2,
+.sprite-icons-Flag,
+.sprite-icons-Facebook,
+.sprite-icons-Eye,
+.sprite-icons-Expose,
+.sprite-icons-Error,
+.sprite-icons-Eject2,
+.sprite-icons-Eject,
+.sprite-icons-dribbble,
+.sprite-icons-Download,
+.sprite-icons-Document,
+.sprite-icons-DocumentRemove,
+.sprite-icons-DocumentAdd,
+.sprite-icons-Document2,
+.sprite-icons-Disk2,
+.sprite-icons-Disk,
+.sprite-icons-Desktop2,
+.sprite-icons-Desktop,
+.sprite-icons-Crop,
+.sprite-icons-CropWithRaster,
+.sprite-icons-CoverFlow,
+.sprite-icons-Copyright,
+.sprite-icons-Conversation,
+.sprite-icons-Computer,
+.sprite-icons-Columns,
+.sprite-icons-Cloud,
+.sprite-icons-CloudUpload,
+.sprite-icons-CloudRemove,
+.sprite-icons-CloudError,
+.sprite-icons-CloudDownload,
+.sprite-icons-CloudAdd,
+.sprite-icons-Clock,
+.sprite-icons-Circle,
+.sprite-icons-CircleLine,
+.sprite-icons-CircleArrowUp,
+.sprite-icons-CircleArrowUp2,
+.sprite-icons-CircleArrowRight,
+.sprite-icons-CircleArrowRight2,
+.sprite-icons-CircleArrowLeft,
+.sprite-icons-CircleArrowLeft2,
+.sprite-icons-CircleArrowDown,
+.sprite-icons-CircleArrowDown2,
+.sprite-icons-Chess,
+.sprite-icons-Chart,
+.sprite-icons-Center,
+.sprite-icons-CD,
+.sprite-icons-Case2,
+.sprite-icons-Case,
+.sprite-icons-Cancel,
+.sprite-icons-Camera,
+.sprite-icons-Calendar,
+.sprite-icons-CalendarwNumber,
+.sprite-icons-Calculator,
+.sprite-icons-Burn,
+.sprite-icons-Box3,
+.sprite-icons-Box2,
+.sprite-icons-Box,
+.sprite-icons-BoxFilled,
+.sprite-icons-Bookmark2,
+.sprite-icons-Bookmark,
+.sprite-icons-Book,
+.sprite-icons-Bold,
+.sprite-icons-Bluetooth,
+.sprite-icons-Bin,
+.sprite-icons-Bell,
+.sprite-icons-Battery,
+.sprite-icons-Back,
+.sprite-icons-at,
+.sprite-icons-ArrowUp,
+.sprite-icons-ArrowUp2,
+.sprite-icons-ArrowRight,
+.sprite-icons-ArrowRight2,
+.sprite-icons-ArrowLeft,
+.sprite-icons-ArrowDown,
+.sprite-icons-ArrowDown2,
+.sprite-icons-AirPlay,
+.sprite-icons-Add,
+.sprite-icons-Add2,
+.sprite-icons-Action,
+.sprite-icons-A{background-image:url('/images/icons.png');background-repeat:no-repeat;}
+.sprite-icons-Wikipedia{background-position:0px 0px;width:16px; height:16px;}
+.sprite-icons-Wifi{background-position:-16px 0px;width:16px; height:16px;}
+.sprite-icons-Waterdrop{background-position:0px -16px;width:16px; height:16px;}
+.sprite-icons-Warning{background-position:-16px -16px;width:16px; height:16px;}
+.sprite-icons-VolumeUp{background-position:-32px 0px;width:16px; height:16px;}
+.sprite-icons-VolumeDown{background-position:-32px -16px;width:16px; height:16px;}
+.sprite-icons-Vimeo{background-position:0px -32px;width:16px; height:16px;}
+.sprite-icons-Videocam{background-position:-16px -32px;width:16px; height:16px;}
+.sprite-icons-User2{background-position:-32px -32px;width:16px; height:16px;}
+.sprite-icons-User{background-position:-48px 0px;width:16px; height:16px;}
+.sprite-icons-USB{background-position:-48px -16px;width:16px; height:16px;}
+.sprite-icons-Upload{background-position:-48px -32px;width:16px; height:16px;}
+.sprite-icons-Underlined{background-position:0px -48px;width:16px; height:16px;}
+.sprite-icons-Twitter{background-position:-16px -48px;width:16px; height:16px;}
+.sprite-icons-Turn{background-position:-32px -48px;width:16px; height:16px;}
+.sprite-icons-TurnRight{background-position:-48px -48px;width:16px; height:16px;}
+.sprite-icons-TurnOff{background-position:-64px 0px;width:16px; height:16px;}
+.sprite-icons-TurnOff2{background-position:-64px -16px;width:16px; height:16px;}
+.sprite-icons-TurnLeft{background-position:-64px -32px;width:16px; height:16px;}
+.sprite-icons-Turn2{background-position:-64px -48px;width:16px; height:16px;}
+.sprite-icons-tumblr{background-position:0px -64px;width:16px; height:16px;}
+.sprite-icons-Triangle{background-position:-16px -64px;width:16px; height:16px;}
+.sprite-icons-TriangleLine{background-position:-32px -64px;width:16px; height:16px;}
+.sprite-icons-Trails{background-position:-48px -64px;width:16px; height:16px;}
+.sprite-icons-ThumbUp{background-position:-64px -64px;width:16px; height:16px;}
+.sprite-icons-ThumbDown{background-position:-80px 0px;width:16px; height:16px;}
+.sprite-icons-Textfield{background-position:-80px -16px;width:16px; height:16px;}
+.sprite-icons-Tag{background-position:-80px -32px;width:16px; height:16px;}
+.sprite-icons-Tablet{background-position:-80px -48px;width:16px; height:16px;}
+.sprite-icons-Table{background-position:-80px -64px;width:16px; height:16px;}
+.sprite-icons-Sync{background-position:0px -80px;width:16px; height:16px;}
+.sprite-icons-Study{background-position:-16px -80px;width:16px; height:16px;}
+.sprite-icons-Stop{background-position:-32px -80px;width:16px; height:16px;}
+.sprite-icons-Star{background-position:-48px -80px;width:16px; height:16px;}
+.sprite-icons-StarLine{background-position:-64px -80px;width:16px; height:16px;}
+.sprite-icons-Stamp{background-position:-80px -80px;width:16px; height:16px;}
+.sprite-icons-SpeechBubble{background-position:-96px 0px;width:16px; height:16px;}
+.sprite-icons-Smiley{background-position:-96px -16px;width:16px; height:16px;}
+.sprite-icons-Shuffle{background-position:-96px -32px;width:16px; height:16px;}
+.sprite-icons-ShowRight{background-position:-96px -48px;width:16px; height:16px;}
+.sprite-icons-Show{background-position:-96px -64px;width:16px; height:16px;}
+.sprite-icons-Shortcut{background-position:-96px -80px;width:16px; height:16px;}
+.sprite-icons-ShoppingCart{background-position:0px -96px;width:16px; height:16px;}
+.sprite-icons-ShoppingBasket{background-position:-16px -96px;width:16px; height:16px;}
+.sprite-icons-Settings2{background-position:-32px -96px;width:16px; height:16px;}
+.sprite-icons-Settings{background-position:-48px -96px;width:16px; height:16px;}
+.sprite-icons-Search{background-position:-64px -96px;width:16px; height:16px;}
+.sprite-icons-SDCard{background-position:-80px -96px;width:16px; height:16px;}
+.sprite-icons-Safari{background-position:-96px -96px;width:16px; height:16px;}
+.sprite-icons-Ruler{background-position:-112px 0px;width:16px; height:16px;}
+.sprite-icons-RSS{background-position:-112px -16px;width:16px; height:16px;}
+.sprite-icons-RoundedRectangle{background-position:-112px -32px;width:16px; height:16px;}
+.sprite-icons-RoundedRectangleLine{background-position:-112px -48px;width:16px; height:16px;}
+.sprite-icons-Right-Adjusted{background-position:-112px -64px;width:16px; height:16px;}
+.sprite-icons-RightArrow{background-position:-112px -80px;width:16px; height:16px;}
+.sprite-icons-Reply{background-position:-112px -96px;width:16px; height:16px;}
+.sprite-icons-ReplyToAll{background-position:0px -112px;width:16px; height:16px;}
+.sprite-icons-Reply2{background-position:-16px -112px;width:16px; height:16px;}
+.sprite-icons-Replay{background-position:-32px -112px;width:16px; height:16px;}
+.sprite-icons-Remove{background-position:-48px -112px;width:16px; height:16px;}
+.sprite-icons-Remove2{background-position:-64px -112px;width:16px; height:16px;}
+.sprite-icons-Reload{background-position:-80px -112px;width:16px; height:16px;}
+.sprite-icons-Rectangle{background-position:-96px -112px;width:16px; height:16px;}
+.sprite-icons-RectangleLine{background-position:-112px -112px;width:16px; height:16px;}
+.sprite-icons-Printer2{background-position:-128px 0px;width:16px; height:16px;}
+.sprite-icons-Printer1{background-position:-128px -16px;width:16px; height:16px;}
+.sprite-icons-Printer{background-position:-128px -32px;width:16px; height:16px;}
+.sprite-icons-Price{background-position:-128px -48px;width:16px; height:16px;}
+.sprite-icons-Postboxes{background-position:-128px -64px;width:16px; height:16px;}
+.sprite-icons-Postbox{background-position:-128px -80px;width:16px; height:16px;}
+.sprite-icons-Polygon{background-position:-128px -96px;width:16px; height:16px;}
+.sprite-icons-PolygonLine{background-position:-128px -112px;width:16px; height:16px;}
+.sprite-icons-Podcast{background-position:0px -128px;width:16px; height:16px;}
+.sprite-icons-Play{background-position:-16px -128px;width:16px; height:16px;}
+.sprite-icons-Plane{background-position:-32px -128px;width:16px; height:16px;}
+.sprite-icons-Pin2{background-position:-48px -128px;width:16px; height:16px;}
+.sprite-icons-Pin{background-position:-64px -128px;width:16px; height:16px;}
+.sprite-icons-Picture{background-position:-80px -128px;width:16px; height:16px;}
+.sprite-icons-Phone{background-position:-96px -128px;width:16px; height:16px;}
+.sprite-icons-Phone2{background-position:-112px -128px;width:16px; height:16px;}
+.sprite-icons-Pen{background-position:-128px -128px;width:16px; height:16px;}
+.sprite-icons-Pause{background-position:-144px 0px;width:16px; height:16px;}
+.sprite-icons-Paperclip{background-position:-144px -16px;width:16px; height:16px;}
+.sprite-icons-Notes{background-position:-144px -32px;width:16px; height:16px;}
+.sprite-icons-Notes2{background-position:-144px -48px;width:16px; height:16px;}
+.sprite-icons-Next{background-position:-144px -64px;width:16px; height:16px;}
+.sprite-icons-Music{background-position:-144px -80px;width:16px; height:16px;}
+.sprite-icons-Movie{background-position:-144px -96px;width:16px; height:16px;}
+.sprite-icons-Moveforeward{background-position:-144px -112px;width:16px; height:16px;}
+.sprite-icons-Movebackward{background-position:-144px -128px;width:16px; height:16px;}
+.sprite-icons-Mouse{background-position:0px -144px;width:16px; height:16px;}
+.sprite-icons-Microphone{background-position:-16px -144px;width:16px; height:16px;}
+.sprite-icons-Microphone2{background-position:-32px -144px;width:16px; height:16px;}
+.sprite-icons-Mail{background-position:-48px -144px;width:16px; height:16px;}
+.sprite-icons-MailOpened{background-position:-64px -144px;width:16px; height:16px;}
+.sprite-icons-Lock{background-position:-80px -144px;width:16px; height:16px;}
+.sprite-icons-Locate{background-position:-96px -144px;width:16px; height:16px;}
+.sprite-icons-List2{background-position:-112px -144px;width:16px; height:16px;}
+.sprite-icons-List{background-position:-128px -144px;width:16px; height:16px;}
+.sprite-icons-Light{background-position:-144px -144px;width:16px; height:16px;}
+.sprite-icons-Library{background-position:-160px 0px;width:16px; height:16px;}
+.sprite-icons-Left-Adjusted{background-position:-160px -16px;width:16px; height:16px;}
+.sprite-icons-LeftArrow{background-position:-160px -32px;width:16px; height:16px;}
+.sprite-icons-Laptop{background-position:-160px -48px;width:16px; height:16px;}
+.sprite-icons-Keyhole{background-position:-160px -64px;width:16px; height:16px;}
+.sprite-icons-Keyboard{background-position:-160px -80px;width:16px; height:16px;}
+.sprite-icons-Key{background-position:-160px -96px;width:16px; height:16px;}
+.sprite-icons-Italic{background-position:-160px -112px;width:16px; height:16px;}
+.sprite-icons-iPodShuffle{background-position:-160px -128px;width:16px; height:16px;}
+.sprite-icons-iPodNano{background-position:-160px -144px;width:16px; height:16px;}
+.sprite-icons-Invite{background-position:0px -160px;width:16px; height:16px;}
+.sprite-icons-Instapaper{background-position:-16px -160px;width:16px; height:16px;}
+.sprite-icons-Info{background-position:-32px -160px;width:16px; height:16px;}
+.sprite-icons-Home{background-position:-48px -160px;width:16px; height:16px;}
+.sprite-icons-HideLeft{background-position:-64px -160px;width:16px; height:16px;}
+.sprite-icons-Hide{background-position:-80px -160px;width:16px; height:16px;}
+.sprite-icons-Help{background-position:-96px -160px;width:16px; height:16px;}
+.sprite-icons-Heart{background-position:-112px -160px;width:16px; height:16px;}
+.sprite-icons-Headphones{background-position:-128px -160px;width:16px; height:16px;}
+.sprite-icons-Grid2{background-position:-144px -160px;width:16px; height:16px;}
+.sprite-icons-Grid{background-position:-160px -160px;width:16px; height:16px;}
+.sprite-icons-Google{background-position:-176px 0px;width:16px; height:16px;}
+.sprite-icons-Globe{background-position:-176px -16px;width:16px; height:16px;}
+.sprite-icons-Globe2{background-position:-176px -32px;width:16px; height:16px;}
+.sprite-icons-Glasses2{background-position:-176px -48px;width:16px; height:16px;}
+.sprite-icons-Glasses{background-position:-176px -64px;width:16px; height:16px;}
+.sprite-icons-Gift{background-position:-176px -80px;width:16px; height:16px;}
+.sprite-icons-Geo{background-position:-176px -96px;width:16px; height:16px;}
+.sprite-icons-Genius2{background-position:-176px -112px;width:16px; height:16px;}
+.sprite-icons-Genius{background-position:-176px -128px;width:16px; height:16px;}
+.sprite-icons-Fullscreen{background-position:-176px -144px;width:16px; height:16px;}
+.sprite-icons-FullscreenOff{background-position:-176px -160px;width:16px; height:16px;}
+.sprite-icons-FullJustification{background-position:0px -176px;width:16px; height:16px;}
+.sprite-icons-Forrst{background-position:-16px -176px;width:16px; height:16px;}
+.sprite-icons-Form{background-position:-32px -176px;width:16px; height:16px;}
+.sprite-icons-Folder{background-position:-48px -176px;width:16px; height:16px;}
+.sprite-icons-FolderAdd{background-position:-64px -176px;width:16px; height:16px;}
+.sprite-icons-Flickr{background-position:-80px -176px;width:16px; height:16px;}
+.sprite-icons-Flag2{background-position:-96px -176px;width:16px; height:16px;}
+.sprite-icons-Flag{background-position:-112px -176px;width:16px; height:16px;}
+.sprite-icons-Facebook{background-position:-128px -176px;width:16px; height:16px;}
+.sprite-icons-Eye{background-position:-144px -176px;width:16px; height:16px;}
+.sprite-icons-Expose{background-position:-160px -176px;width:16px; height:16px;}
+.sprite-icons-Error{background-position:-176px -176px;width:16px; height:16px;}
+.sprite-icons-Eject2{background-position:-192px 0px;width:16px; height:16px;}
+.sprite-icons-Eject{background-position:-192px -16px;width:16px; height:16px;}
+.sprite-icons-dribbble{background-position:-192px -32px;width:16px; height:16px;}
+.sprite-icons-Download{background-position:-192px -48px;width:16px; height:16px;}
+.sprite-icons-Document{background-position:-192px -64px;width:16px; height:16px;}
+.sprite-icons-DocumentRemove{background-position:-192px -80px;width:16px; height:16px;}
+.sprite-icons-DocumentAdd{background-position:-192px -96px;width:16px; height:16px;}
+.sprite-icons-Document2{background-position:-192px -112px;width:16px; height:16px;}
+.sprite-icons-Disk2{background-position:-192px -128px;width:16px; height:16px;}
+.sprite-icons-Disk{background-position:-192px -144px;width:16px; height:16px;}
+.sprite-icons-Desktop2{background-position:-192px -160px;width:16px; height:16px;}
+.sprite-icons-Desktop{background-position:-192px -176px;width:16px; height:16px;}
+.sprite-icons-Crop{background-position:0px -192px;width:16px; height:16px;}
+.sprite-icons-CropWithRaster{background-position:-16px -192px;width:16px; height:16px;}
+.sprite-icons-CoverFlow{background-position:-32px -192px;width:16px; height:16px;}
+.sprite-icons-Copyright{background-position:-48px -192px;width:16px; height:16px;}
+.sprite-icons-Conversation{background-position:-64px -192px;width:16px; height:16px;}
+.sprite-icons-Computer{background-position:-80px -192px;width:16px; height:16px;}
+.sprite-icons-Columns{background-position:-96px -192px;width:16px; height:16px;}
+.sprite-icons-Cloud{background-position:-112px -192px;width:16px; height:16px;}
+.sprite-icons-CloudUpload{background-position:-128px -192px;width:16px; height:16px;}
+.sprite-icons-CloudRemove{background-position:-144px -192px;width:16px; height:16px;}
+.sprite-icons-CloudError{background-position:-160px -192px;width:16px; height:16px;}
+.sprite-icons-CloudDownload{background-position:-176px -192px;width:16px; height:16px;}
+.sprite-icons-CloudAdd{background-position:-192px -192px;width:16px; height:16px;}
+.sprite-icons-Clock{background-position:-208px 0px;width:16px; height:16px;}
+.sprite-icons-Circle{background-position:-208px -16px;width:16px; height:16px;}
+.sprite-icons-CircleLine{background-position:-208px -32px;width:16px; height:16px;}
+.sprite-icons-CircleArrowUp{background-position:-208px -48px;width:16px; height:16px;}
+.sprite-icons-CircleArrowUp2{background-position:-208px -64px;width:16px; height:16px;}
+.sprite-icons-CircleArrowRight{background-position:-208px -80px;width:16px; height:16px;}
+.sprite-icons-CircleArrowRight2{background-position:-208px -96px;width:16px; height:16px;}
+.sprite-icons-CircleArrowLeft{background-position:-208px -112px;width:16px; height:16px;}
+.sprite-icons-CircleArrowLeft2{background-position:-208px -128px;width:16px; height:16px;}
+.sprite-icons-CircleArrowDown{background-position:-208px -144px;width:16px; height:16px;}
+.sprite-icons-CircleArrowDown2{background-position:-208px -160px;width:16px; height:16px;}
+.sprite-icons-Chess{background-position:-208px -176px;width:16px; height:16px;}
+.sprite-icons-Chart{background-position:-208px -192px;width:16px; height:16px;}
+.sprite-icons-Center{background-position:0px -208px;width:16px; height:16px;}
+.sprite-icons-CD{background-position:-16px -208px;width:16px; height:16px;}
+.sprite-icons-Case2{background-position:-32px -208px;width:16px; height:16px;}
+.sprite-icons-Case{background-position:-48px -208px;width:16px; height:16px;}
+.sprite-icons-Cancel{background-position:-64px -208px;width:16px; height:16px;}
+.sprite-icons-Camera{background-position:-80px -208px;width:16px; height:16px;}
+.sprite-icons-Calendar{background-position:-96px -208px;width:16px; height:16px;}
+.sprite-icons-CalendarwNumber{background-position:-112px -208px;width:16px; height:16px;}
+.sprite-icons-Calculator{background-position:-128px -208px;width:16px; height:16px;}
+.sprite-icons-Burn{background-position:-144px -208px;width:16px; height:16px;}
+.sprite-icons-Box3{background-position:-160px -208px;width:16px; height:16px;}
+.sprite-icons-Box2{background-position:-176px -208px;width:16px; height:16px;}
+.sprite-icons-Box{background-position:-192px -208px;width:16px; height:16px;}
+.sprite-icons-BoxFilled{background-position:-208px -208px;width:16px; height:16px;}
+.sprite-icons-Bookmark2{background-position:-224px 0px;width:16px; height:16px;}
+.sprite-icons-Bookmark{background-position:-224px -16px;width:16px; height:16px;}
+.sprite-icons-Book{background-position:-224px -32px;width:16px; height:16px;}
+.sprite-icons-Bold{background-position:-224px -48px;width:16px; height:16px;}
+.sprite-icons-Bluetooth{background-position:-224px -64px;width:16px; height:16px;}
+.sprite-icons-Bin{background-position:-224px -80px;width:16px; height:16px;}
+.sprite-icons-Bell{background-position:-224px -96px;width:16px; height:16px;}
+.sprite-icons-Battery{background-position:-224px -112px;width:16px; height:16px;}
+.sprite-icons-Back{background-position:-224px -128px;width:16px; height:16px;}
+.sprite-icons-at{background-position:-224px -144px;width:16px; height:16px;}
+.sprite-icons-ArrowUp{background-position:-224px -160px;width:16px; height:16px;}
+.sprite-icons-ArrowUp2{background-position:-224px -176px;width:16px; height:16px;}
+.sprite-icons-ArrowRight{background-position:-224px -192px;width:16px; height:16px;}
+.sprite-icons-ArrowRight2{background-position:-224px -208px;width:16px; height:16px;}
+.sprite-icons-ArrowLeft{background-position:0px -224px;width:16px; height:16px;}
+.sprite-icons-ArrowDown{background-position:-16px -224px;width:16px; height:16px;}
+.sprite-icons-ArrowDown2{background-position:-32px -224px;width:16px; height:16px;}
+.sprite-icons-AirPlay{background-position:-48px -224px;width:16px; height:16px;}
+.sprite-icons-Add{background-position:-64px -224px;width:16px; height:16px;}
+.sprite-icons-Add2{background-position:-80px -224px;width:16px; height:16px;}
+.sprite-icons-Action{background-position:-96px -224px;width:16px; height:16px;}
+.sprite-icons-A{background-position:-112px -224px;width:16px; height:16px;}
