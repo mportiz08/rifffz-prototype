@@ -1,15 +1,27 @@
 div#player
+  div.top-bar
+    div.container
+      div.row
+        div.span2.controls
+          ul.unstyled
+            li
+              a(href="#").sprite-icons-Back
+            li
+              a(href="#").sprite-icons-Play
+            li
+              a(href="#").sprite-icons-Next
+        div.span1.controls
+          ul.unstyled
+            li
+              a(href="#").sprite-icons-Search
+        div.span1
+          div.time-left 2:30
+        div.span10.progress
+          div.progress-bar
+            span(style="width: 71%;")
+        div.span2
+          div.time-total 3:34
   div#main.container
-    div.top-bar.row
-      div.span8
-        div.controls
-          audio(controls="controls")
-            source(src="/test", type="audio/mpeg")
-            Your browser does not support the audio element.
-      div.span8
-        div.search
-          form
-            input(type="text")
     div.row
       div.span8
         div.album-cover
@@ -19,15 +31,3 @@ div#player
           span.album-year-released &nbsp;(2005)
         h2 As Cities Burn
         ul.album-song-list.unstyled
-          li Thus From My Lips, By Yours, My Sin Is Purged
-          li Love Jealous One, Love
-          li Incomplete Is a Leech
-          li Bloodsucker Pt. II
-          li.now-playing
-            span.label.success now playing
-            span &nbsp;Terrible! How Terrible for the Great City!
-          li The Widow
-          li Wake Dead Man, Wake
-          li Admission:Regret
-          li One:Twentyseven
-          li Of Want and Misery:The Nothing That Kills
