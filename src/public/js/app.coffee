@@ -26,6 +26,34 @@ $ ->
         $(@.el).append "<li>#{s}</li>"
       @
   
+  class ControlsView extends Backbone.View
+    el: 'div.top-bar div.container div.row'
+    
+    events:
+      'click .play-pause': 'togglePlay'
+    
+    initialize: ->
+      @playPauseEl = $(@.el).find '.play-pause'
+      @audio = $('audio').get 0
+    
+    togglePlay: ->
+      console.log 'toggling'
+      if @audio.paused
+        @audio.play()
+        @.setPauseIcon()
+      else
+        @audio.pause()
+        @.setPlayIcon()
+      false
+    
+    setPauseIcon: ->
+      @playPauseEl.removeClass 'sprite-icons-Play'
+      @playPauseEl.addClass 'sprite-icons-Pause'
+    
+    setPlayIcon: ->
+      @playPauseEl.removeClass 'sprite-icons-Pause'
+      @playPauseEl.addClass 'sprite-icons-Play'
+  
   class Router extends Backbone.Router
     routes:
       ":artist/:album": "album"
@@ -39,6 +67,8 @@ $ ->
           songs: data.album.songs
         albumView = new AlbumView model: album
         albumView.render()
+        controlsView = new ControlsView()
+        controlsView.render()
   
   window.router = new Router
   Backbone.history.start()

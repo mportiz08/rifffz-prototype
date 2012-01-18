@@ -7,7 +7,7 @@ div#player
             li
               a(href="#").sprite-icons-Back
             li
-              a(href="#").sprite-icons-Play
+              a(href="#").play-pause.sprite-icons-Play
             li
               a(href="#").sprite-icons-Next
         div.span1.controls
@@ -21,6 +21,8 @@ div#player
             span(style="width: 71%;")
         div.span2
           div.time-total 3:34
+        audio
+          source(src="/api/audio/testartist/testalbum/testsong", type="audio/mpeg")
   div#main.container
     div.row
       div.span8
