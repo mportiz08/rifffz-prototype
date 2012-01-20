@@ -91,7 +91,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .album-cover {
-  background: url("/images/folder.tmp.jpg") no-repeat center center;
   background-size: contain;
   border: 2px solid #222;
   border-radius: 6px;
