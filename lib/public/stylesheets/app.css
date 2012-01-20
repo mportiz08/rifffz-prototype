@@ -74,6 +74,14 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulse1 .6s infinite, grow .5s ease-out;
 }
 
+.time-left, .time-total {
+  text-align: center;
+}
+
+.time-total {
+  padding-right: 16px;
+}
+
 @-webkit-keyframes grow {
   0% {width: 0;}
 }
@@ -83,7 +91,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .album-cover {
-  background: url("/images/folder.tmp.jpg") no-repeat center center;
   background-size: contain;
   border: 2px solid #222;
   border-radius: 6px;
