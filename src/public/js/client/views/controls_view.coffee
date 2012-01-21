@@ -5,17 +5,23 @@ class ControlsView extends Backbone.View
     'click .play-pause': 'togglePlay'
   
   initialize: ->
-    @playPauseEl = $(@.el).find '.play-pause'
+    @playPauseEl = $(@el).find '.play-pause'
+    @progressEl = $(@el).find '.progress-bar span'
     @audio = $('audio').get 0
+    $(@audio).bind 'timeupdate', @updateProgressBar
+  
+  updateProgressBar: =>
+    secsLeft = parseInt(@audio.duration - @audio.currentTime, 10)
+    percentage = (@audio.currentTime / @audio.duration) * 100
+    @progressEl.css(width: percentage + '%')
   
   togglePlay: ->
-    console.log 'toggling'
     if @audio.paused
       @audio.play()
-      @.setPauseIcon()
+      @setPauseIcon()
     else
       @audio.pause()
-      @.setPlayIcon()
+      @setPlayIcon()
     false
   
   setPauseIcon: ->
