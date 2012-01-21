@@ -74,7 +74,7 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulse1 .6s infinite, grow .5s ease-out;
 }
 
-.time-left, .time-total {
+.time-passed, .time-total {
   text-align: center;
 }
 
