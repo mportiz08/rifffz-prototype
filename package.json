@@ -8,6 +8,7 @@
     "jade": "0.20.0"
   },
   "devDependencies": {
-    "coffee-script": "1.2.0"
+    "coffee-script": "1.2.0",
+    "stitch": "0.3.3"
   }
 }
