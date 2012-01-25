@@ -37,8 +37,14 @@ class Library
       year: @valForKey "#{resource}:year"
       songs: (@getSong(artist, album, s) for s in @valForKey("#{resource}:songs"))
   
+  getAlbumCoverPath: (artist, album) ->
+    @valForKey "artist:#{artist}:album:#{album}:cover"
+  
   getSong: (artist, album, song) ->
-    @valForKey "artist:#{@getArtist(artist)}:album:#{album}:song:#{song}"
+    @valForKey "artist:#{artist}:album:#{album}:song:#{song}"
+  
+  getSongAudioPath: (artist, album, song) ->
+    @valForKey "artist:#{artist}:album:#{album}:song:#{song}:audio"
   
   valForKey: (key) ->
     @client.get key, (err, reply) ->
