@@ -5,7 +5,8 @@
   "author": "Marcus Ortiz",
   "dependencies": {
     "express": "2.5.4",
-    "jade": "0.20.0"
+    "jade": "0.20.0",
+    "redis": "0.7.1"
   },
   "devDependencies": {
     "coffee-script": "1.2.0",

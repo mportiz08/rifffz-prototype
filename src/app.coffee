@@ -1,4 +1,5 @@
 express = require 'express'
+lib     = require('./library').loadLibrary()
 
 app = express.createServer()
 app.set 'view engine', 'jade'
