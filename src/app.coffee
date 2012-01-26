@@ -35,5 +35,9 @@ app.get '/api/album/:artist/:album', (req, res) ->
         'Of Want and Misery:The Nothing That Kills'
       ]
 
-exports.loadApp = ->
-  app
+exports.loadApp = (port) ->
+  lib.on 'loaded', =>
+    console.log "library loaded ✓"
+    app.listen port
+    console.log "rifffz running ✓"
+    console.log "\ncheck it out in your browser at http://127.0.0.1:#{port}"

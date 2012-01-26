@@ -1,4 +1,6 @@
-redis = require 'redis'
+_            = require 'underscore'
+redis        = require 'redis'
+EventEmitter = require('events').EventEmitter
 
 # Manages the library of music available on the machine
 # using a local Redis server instance.
@@ -21,9 +23,20 @@ redis = require 'redis'
 #    => "Lonely Boy"
 #   GET artist:the-black-keys:albums:el-camino:song:lonely-boy:audio
 #    => "/Users/marcus/Music/TheBlackKeys/ElCamino/LonelyBoy.mp3"
-class Library
-  initialize: ->
+class Library extends EventEmitter
+  settings:
+    redis:
+      redisDB: 8
+  
+  constructor: (settings={}) ->
+    _.extend @settings, settings
     @client = redis.createClient()
+    @client.on 'ready', => @emit 'loaded'
+    @client.on 'error', (err) => console.log err
+    @client.select @settings.redisDB
+  
+  getClient: ->
+    @client
   
   getArtist: (artist) ->
     name: @valForKey "artist:#{artist}"
