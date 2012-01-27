@@ -1,7 +1,2 @@
 #!/usr/bin/env node
-
-//var port = 1337;
-var app = require('..').loadApp(1337);
-
-//app.listen(port);
-//console.log("\nrifffz started ✓ (http://127.0.0.1:" + port + ")");
+require('..').loadApp(1337);
