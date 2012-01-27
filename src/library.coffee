@@ -25,15 +25,20 @@ EventEmitter = require('events').EventEmitter
 #    => "/Users/marcus/Music/TheBlackKeys/ElCamino/LonelyBoy.mp3"
 class Library extends EventEmitter
   settings:
+    debug: false
     redis:
       redisDB: 8
   
-  constructor: (settings={}) ->
-    _.extend @settings, settings
+  constructor: ->
     @client = redis.createClient()
     @client.on 'ready', => @emit 'loaded'
     @client.on 'error', (err) => console.log err
     @client.select @settings.redisDB
+    @
+  
+  settings: (settings) ->
+    @settings = _.defaults settings, @settings
+    @
   
   getClient: ->
     @client
@@ -59,9 +64,12 @@ class Library extends EventEmitter
   getSongAudioPath: (artist, album, song) ->
     @valForKey "artist:#{artist}:album:#{album}:song:#{song}:audio"
   
-  valForKey: (key) ->
-    @client.get key, (err, reply) ->
-      if err then console.log err else reply
+  valForKey: (key, callback) =>
+    @client.get key, (err, reply) =>
+      if err
+        console.log err
+      else
+        callback reply
 
 exports.loadLibrary = ->
   new Library()

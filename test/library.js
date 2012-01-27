@@ -1,24 +1,31 @@
 (function() {
-  var rifffz;
+  var lib, redis, rifffz, runTest, should,
+    _this = this;
+
+  should = require('should');
 
   rifffz = require('../');
 
-  describe('Library', function() {
-    var lib;
-    lib = rifffz.loadLibrary({
+  redis = require('redis');
+
+  lib = rifffz.loadLibrary().settings({
+    debug: true,
+    redis: {
       redisDB: 9
+    }
+  });
+
+  runTest = function() {
+    return lib.valForKey('the-black-keys', function(reply) {
+      console.log(reply);
+      return lib.client.quit();
     });
-    before(function() {
-      return lib.client.flushdb();
-    });
-    return describe('#getArtist()', function() {
-      return it('should return a json representation of the artist', function() {
-        return lib.getArtist("the-black-keys").should.equal({
-          artist: {
-            name: 'The Black Keys'
-          }
-        });
-      });
+  };
+
+  lib.on('loaded', function() {
+    console.log('lib loaded');
+    return lib.client.set('the-black-keys', 'The Black Keys', function(err, reply) {
+      return runTest();
     });
   });
 

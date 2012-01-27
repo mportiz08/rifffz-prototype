@@ -1,13 +1,15 @@
+should = require 'should'
 rifffz = require '../'
+redis  = require 'redis'
 
-describe 'Library', ->
-  lib = rifffz.loadLibrary(redisDB: 9)
-  
-  before ->
-    lib.client.flushdb()
-  
-  describe '#getArtist()', ->
-    it 'should return a json representation of the artist', ->
-      lib.getArtist("the-black-keys").should.equal
-        artist:
-          name: 'The Black Keys'
+lib = rifffz.loadLibrary().settings(debug: true, redis: { redisDB: 9 })
+
+runTest = ->
+  lib.valForKey 'the-black-keys', (reply) ->
+    console.log reply
+    lib.client.quit()
+
+lib.on 'loaded', =>
+  console.log 'lib loaded'
+  lib.client.set 'the-black-keys', 'The Black Keys', (err, reply) ->
+    runTest()
