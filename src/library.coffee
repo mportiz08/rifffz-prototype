@@ -24,6 +24,8 @@ EventEmitter = require('events').EventEmitter
 #   GET artist:the-black-keys:albums:el-camino:song:lonely-boy:audio
 #    => "/Users/marcus/Music/TheBlackKeys/ElCamino/LonelyBoy.mp3"
 class Library extends EventEmitter
+  loaded: false
+  
   settings:
     debug: false
     redis:
@@ -31,20 +33,26 @@ class Library extends EventEmitter
   
   constructor: ->
     @client = redis.createClient()
-    @client.on 'ready', => @emit 'loaded'
-    @client.on 'error', (err) => console.log err
-    @client.select @settings.redisDB
+    @client.on 'ready', =>
+      @client.select @settings.redisDB, (err, reply) =>
+        console.log err if err
+        @loaded = true
+        @emit 'loaded'
+    @client.on 'error', (err) ->
+      console.log err
     @
   
   settings: (settings) ->
     @settings = _.defaults settings, @settings
     @
   
-  getClient: ->
-    @client
-  
-  getArtist: (artist) ->
-    name: @valForKey "artist:#{artist}"
+  getArtist: (artist, callback) ->
+    @valForKey "artist:#{artist}", (val) ->
+      console.log val
+      artist =
+        artist:
+          name: val
+      callback artist
   
   getAlbum: (artist, album) ->
     resource = "artist:#{artist}:album:#{album}"
@@ -64,12 +72,19 @@ class Library extends EventEmitter
   getSongAudioPath: (artist, album, song) ->
     @valForKey "artist:#{artist}:album:#{album}:song:#{song}:audio"
   
-  valForKey: (key, callback) =>
-    @client.get key, (err, reply) =>
+  valForKey: (key, callback) ->
+    @client.get key, (err, reply) ->
       if err
         console.log err
       else
         callback reply
+  
+  reset: (callback) ->
+    @client.flushdb ->
+      callback
+  
+  close: ->
+    @client.quit()
 
 exports.loadLibrary = ->
   new Library()

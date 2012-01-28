@@ -5,11 +5,11 @@ redis  = require 'redis'
 lib = rifffz.loadLibrary().settings(debug: true, redis: { redisDB: 9 })
 
 runTest = ->
-  lib.valForKey 'the-black-keys', (reply) ->
-    console.log reply
-    lib.client.quit()
+  lib.getArtist 'the-black-keys', (artist) ->
+    console.log artist
+    lib.reset ->
+      lib.close()
 
 lib.on 'loaded', =>
-  console.log 'lib loaded'
-  lib.client.set 'the-black-keys', 'The Black Keys', (err, reply) ->
+  lib.client.set 'artist:the-black-keys', 'The Black Keys', (err, reply) ->
     runTest()

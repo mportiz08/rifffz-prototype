@@ -16,15 +16,16 @@
   });
 
   runTest = function() {
-    return lib.valForKey('the-black-keys', function(reply) {
-      console.log(reply);
-      return lib.client.quit();
+    return lib.getArtist('the-black-keys', function(artist) {
+      console.log(artist);
+      return lib.reset(function() {
+        return lib.close();
+      });
     });
   };
 
   lib.on('loaded', function() {
-    console.log('lib loaded');
-    return lib.client.set('the-black-keys', 'The Black Keys', function(err, reply) {
+    return lib.client.set('artist:the-black-keys', 'The Black Keys', function(err, reply) {
       return runTest();
     });
   });
