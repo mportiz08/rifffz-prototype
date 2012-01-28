@@ -45,10 +45,9 @@ class Library extends EventEmitter
   
   getArtist: (artist, callback) ->
     @valForKey "artist:#{artist}", (val) ->
-      artist =
+      callback
         artist:
           name: val
-      callback artist
   
   getAlbum: (artist, album) ->
     resource = "artist:#{artist}:album:#{album}"
