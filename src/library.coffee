@@ -24,17 +24,14 @@ EventEmitter = require('events').EventEmitter
 #   GET artist:the-black-keys:albums:el-camino:song:lonely-boy:audio
 #    => "/Users/marcus/Music/TheBlackKeys/ElCamino/LonelyBoy.mp3"
 class Library extends EventEmitter
-  loaded: false
-  
-  settings:
-    debug: false
-    redis:
-      redisDB: 8
-  
   constructor: ->
+    @loaded = false
+    @settings = {}
+    @settings.redis = {}
+    @settings.redis.redisDB = 8
     @client = redis.createClient()
     @client.on 'ready', =>
-      @client.select @settings.redisDB, (err, reply) =>
+      @client.select @settings.redis.redisDB, (err, reply) =>
         console.log err if err
         @loaded = true
         @emit 'loaded'
@@ -48,7 +45,6 @@ class Library extends EventEmitter
   
   getArtist: (artist, callback) ->
     @valForKey "artist:#{artist}", (val) ->
-      console.log val
       artist =
         artist:
           name: val
@@ -80,8 +76,8 @@ class Library extends EventEmitter
         callback reply
   
   reset: (callback) ->
-    @client.flushdb ->
-      callback
+    @client.flushdb (err, reply) ->
+      callback()
   
   close: ->
     @client.quit()

@@ -1,32 +1,22 @@
 (function() {
-  var lib, redis, rifffz, runTest, should,
-    _this = this;
+  var assert, lib, rifffz;
 
-  should = require('should');
+  assert = require('assert');
 
   rifffz = require('../');
 
-  redis = require('redis');
-
-  lib = rifffz.loadLibrary().settings({
-    debug: true,
-    redis: {
-      redisDB: 9
-    }
-  });
-
-  runTest = function() {
-    return lib.getArtist('the-black-keys', function(artist) {
-      console.log(artist);
-      return lib.reset(function() {
-        return lib.close();
-      });
-    });
-  };
+  lib = rifffz.loadLibrary();
 
   lib.on('loaded', function() {
-    return lib.client.set('artist:the-black-keys', 'The Black Keys', function(err, reply) {
-      return runTest();
+    return lib.client.set('artist:the-black-keys', 'The Black Keys', function() {
+      return lib.getArtist('the-black-keys', function(artist) {
+        assert.deepEqual(artist, {
+          artist: {
+            name: 'The Black Keys'
+          }
+        });
+        return process.exit();
+      });
     });
   });
 
