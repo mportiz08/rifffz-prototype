@@ -32,16 +32,17 @@ lib.on 'loaded', ->
     lib.client.set 'artist:the-black-keys:album:el-camino:cover', '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg'
     lib.client.rpush 'artist:the-black-keys:album:el-camino:songs', 'Lonely Boy'
     lib.getArtist 'the-black-keys', (artist) ->
-        assert.deepEqual artist,
+      assert.deepEqual artist,
+        artist:
+          name: 'The Black Keys'
+      lib.getAlbum 'the-black-keys', 'el-camino', (album) ->
+        assert.deepEqual album,
           artist:
             name: 'The Black Keys'
-        lib.getAlbum 'the-black-keys', 'el-camino', (album) ->
-          assert.deepEqual album,
-            artist:
-              name: 'The Black Keys'
-            album:
-              name: 'El Camino'
-              year: '2011'
-              cover: '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg'
-              songs: ['Lonely Boy']
+          album:
+            name: 'El Camino'
+            year: '2011'
+            songs: ['Lonely Boy']
+        lib.getAlbumCover 'the-black-keys', 'el-camino', (path) ->
+          assert.equal path, '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg'
           process.exit()

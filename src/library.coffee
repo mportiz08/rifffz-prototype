@@ -54,16 +54,18 @@ class Library extends EventEmitter
     @getArtist artist, (artistJSON) =>
       @valForKey resource, (albumName) =>
         @valForKey "#{resource}:year", (albumYear) =>
-          @valForKey "#{resource}:cover", (albumCover) =>
-            @valForListKey "#{resource}:songs", (albumSongs) =>
-              callback
-                artist:
-                  name: artistJSON.artist.name
-                album:
-                  name: albumName
-                  year: albumYear
-                  cover: albumCover
-                  songs: albumSongs
+          @valForListKey "#{resource}:songs", (albumSongs) =>
+            callback
+              artist:
+                name: artistJSON.artist.name
+              album:
+                name: albumName
+                year: albumYear
+                songs: albumSongs
+  
+  getAlbumCover: (artist, album, callback) ->
+    @valForKey "artist:#{artist}:album:#{album}:cover", (val) ->
+      callback val
   
   valForKey: (key, callback) ->
     @client.get key, (err, reply) ->

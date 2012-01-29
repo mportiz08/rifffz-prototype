@@ -33,11 +33,13 @@
             album: {
               name: 'El Camino',
               year: '2011',
-              cover: '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg',
               songs: ['Lonely Boy']
             }
           });
-          return process.exit();
+          return lib.getAlbumCover('the-black-keys', 'el-camino', function(path) {
+            assert.equal(path, '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg');
+            return process.exit();
+          });
         });
       });
     });
