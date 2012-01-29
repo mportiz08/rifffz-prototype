@@ -25,9 +25,12 @@ task 'build', "Builds source and test files when the files are saved", ->
   buildTests()
 
 task 'test', "Test source files", ->
-  mocha = spawn './node_modules/mocha/bin/mocha', ['--colors']
-  mocha.stdout.on 'data', (data) -> process.stdout.write data.toString()
-  mocha.stderr.on 'data', (data) -> process.stderr.write data.toString()
+  coffee = spawn './node_modules/coffee-script/bin/coffee', ['test/library.coffee']
+  coffee.stdout.on 'data', (data) -> process.stdout.write data.toString()
+  coffee.stderr.on 'data', (data) -> process.stderr.write data.toString()
+  #mocha = spawn './node_modules/mocha/bin/mocha', ['--colors']
+  #mocha.stdout.on 'data', (data) -> process.stdout.write data.toString()
+  #mocha.stderr.on 'data', (data) -> process.stderr.write data.toString()
 
 task 'client', "Build client.js file.", ->
   client = stitch.createPackage

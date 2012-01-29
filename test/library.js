@@ -19,6 +19,7 @@
       lib.client.set('artist:the-black-keys:album:el-camino:year', '2011');
       lib.client.set('artist:the-black-keys:album:el-camino:cover', '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg');
       lib.client.rpush('artist:the-black-keys:album:el-camino:songs', 'Lonely Boy');
+      lib.client.set('artist:the-black-keys:album:el-camino:song:lonely-boy:audio', '/Users/marcus/Music/TheBlackKeys/ElCamino/LonelyBoy.mp3');
       return lib.getArtist('the-black-keys', function(artist) {
         assert.deepEqual(artist, {
           artist: {
@@ -38,7 +39,10 @@
           });
           return lib.getAlbumCover('the-black-keys', 'el-camino', function(path) {
             assert.equal(path, '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg');
-            return process.exit();
+            return lib.getSongAudio('the-black-keys', 'el-camino', 'lonely-boy', function(path) {
+              assert.equal(path, '/Users/marcus/Music/TheBlackKeys/ElCamino/LonelyBoy.mp3');
+              return process.exit();
+            });
           });
         });
       });

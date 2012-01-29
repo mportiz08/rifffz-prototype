@@ -10,7 +10,8 @@ app.get '/', (req, res) ->
   res.render 'index'
 
 app.get '/api/audio/:artist/:album/:song', (req, res) ->
-  res.sendfile '/Users/marcus/Music/iTunes/iTunes\ Media/Music/As\ Cities\ Burn/Son,\ I\ Loved\ You\ At\ Your\ Darkest/05\ -\ Terrible\!\ How\ Terrible\ For\ The\ Great\ City\!.mp3'
+  lib.getSongAudio req.params.artist, req.params.album, req.params.song, (audio) ->
+    res.sendfile audio
 
 app.get '/api/cover/:artist/:album', (req, res) ->
   lib.getAlbumCover req.params.artist, req.params.album, (cover) ->

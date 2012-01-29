@@ -67,6 +67,10 @@ class Library extends EventEmitter
     @valForKey "artist:#{artist}:album:#{album}:cover", (val) ->
       callback val
   
+  getSongAudio: (artist, album, song, callback) ->
+    @valForKey "artist:#{artist}:album:#{album}:song:#{song}:audio", (val) ->
+      callback val
+  
   valForKey: (key, callback) ->
     @client.get key, (err, reply) ->
       if err
