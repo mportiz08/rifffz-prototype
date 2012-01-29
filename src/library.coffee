@@ -28,7 +28,7 @@ class Library extends EventEmitter
     @loaded = false
     @settings = {}
     @settings.redis = {}
-    @settings.redis.redisDB = 8
+    @settings.redis.redisDB = 0
     @client = redis.createClient()
     @client.on 'ready', =>
       @client.select @settings.redis.redisDB, (err, reply) =>

@@ -13,7 +13,9 @@ class Router extends Backbone.Router
         year: data.album.year
         artist: data.artist.name
         songs: data.album.songs
-      albumView = new AlbumView model: album
+      albumView = new AlbumView(model: album).setParams
+        artist: artistName
+        album: albumName
       albumView.render()
       controlsView = new ControlsView()
       controlsView.render()
