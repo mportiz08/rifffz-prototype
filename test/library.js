@@ -5,7 +5,12 @@
 
   rifffz = require('../');
 
-  lib = rifffz.loadLibrary();
+  lib = rifffz.loadLibrary().withSettings({
+    debug: true,
+    redis: {
+      redisDB: 9
+    }
+  });
 
   lib.on('loaded', function() {
     return lib.client.set('artist:the-black-keys', 'The Black Keys', function() {

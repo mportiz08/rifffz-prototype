@@ -23,7 +23,7 @@ rifffz = require '../'
 #      lib.close()
 #      done()
 
-lib = rifffz.loadLibrary()#.settings(debug: true, redis: { redisDB: 9 })
+lib = rifffz.loadLibrary().withSettings(debug: true, redis: { redisDB: 9 })
 lib.on 'loaded', ->
   lib.client.set 'artist:the-black-keys', 'The Black Keys', ->
     lib.getArtist 'the-black-keys', (artist) ->

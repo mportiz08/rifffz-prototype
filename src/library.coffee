@@ -39,7 +39,7 @@ class Library extends EventEmitter
       console.log err
     @
   
-  settings: (settings) ->
+  withSettings: (settings) ->
     @settings = _.defaults settings, @settings
     @
   
