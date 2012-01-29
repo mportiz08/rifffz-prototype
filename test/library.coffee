@@ -25,9 +25,23 @@ rifffz = require '../'
 
 lib = rifffz.loadLibrary().withSettings(debug: true, redis: { redisDB: 9 })
 lib.on 'loaded', ->
-  lib.client.set 'artist:the-black-keys', 'The Black Keys', ->
+  lib.reset ->
+    lib.client.set 'artist:the-black-keys', 'The Black Keys'
+    lib.client.set 'artist:the-black-keys:album:el-camino', 'El Camino'
+    lib.client.set 'artist:the-black-keys:album:el-camino:year', '2011'
+    lib.client.set 'artist:the-black-keys:album:el-camino:cover', '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg'
+    lib.client.rpush 'artist:the-black-keys:album:el-camino:songs', 'Lonely Boy'
     lib.getArtist 'the-black-keys', (artist) ->
-      assert.deepEqual artist,
-        artist:
-          name: 'The Black Keys'
-      process.exit()
+        assert.deepEqual artist,
+          artist:
+            name: 'The Black Keys'
+        lib.getAlbum 'the-black-keys', 'el-camino', (album) ->
+          assert.deepEqual album,
+            artist:
+              name: 'The Black Keys'
+            album:
+              name: 'El Camino'
+              year: '2011'
+              cover: '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg'
+              songs: ['Lonely Boy']
+          process.exit()

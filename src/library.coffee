@@ -49,23 +49,21 @@ class Library extends EventEmitter
         artist:
           name: val
   
-  getAlbum: (artist, album) ->
+  getAlbum: (artist, album, callback) ->
     resource = "artist:#{artist}:album:#{album}"
-    artist:
-      @getArtist artist
-    album:
-      name: @valForKey resource
-      year: @valForKey "#{resource}:year"
-      songs: (@getSong(artist, album, s) for s in @valForKey("#{resource}:songs"))
-  
-  getAlbumCoverPath: (artist, album) ->
-    @valForKey "artist:#{artist}:album:#{album}:cover"
-  
-  getSong: (artist, album, song) ->
-    @valForKey "artist:#{artist}:album:#{album}:song:#{song}"
-  
-  getSongAudioPath: (artist, album, song) ->
-    @valForKey "artist:#{artist}:album:#{album}:song:#{song}:audio"
+    @getArtist artist, (artistJSON) =>
+      @valForKey resource, (albumName) =>
+        @valForKey "#{resource}:year", (albumYear) =>
+          @valForKey "#{resource}:cover", (albumCover) =>
+            @valForListKey "#{resource}:songs", (albumSongs) =>
+              callback
+                artist:
+                  name: artistJSON.artist.name
+                album:
+                  name: albumName
+                  year: albumYear
+                  cover: albumCover
+                  songs: albumSongs
   
   valForKey: (key, callback) ->
     @client.get key, (err, reply) ->
@@ -73,6 +71,14 @@ class Library extends EventEmitter
         console.log err
       else
         callback reply
+  
+  valForListKey: (key, callback) ->
+    @client.llen key, (err, reply) =>
+      if err
+        console.log err
+      else
+        @client.lrange key, 0, reply, (err, reply) ->
+          callback reply
   
   reset: (callback) ->
     @client.flushdb (err, reply) ->
