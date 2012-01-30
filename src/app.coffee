@@ -1,4 +1,5 @@
 express = require 'express'
+lib     = require('./library').loadLibrary()
 
 app = express.createServer()
 app.set 'view engine', 'jade'
@@ -9,30 +10,20 @@ app.get '/', (req, res) ->
   res.render 'index'
 
 app.get '/api/audio/:artist/:album/:song', (req, res) ->
-  res.sendfile '/Users/marcus/Music/iTunes/iTunes\ Media/Music/As\ Cities\ Burn/Son,\ I\ Loved\ You\ At\ Your\ Darkest/05\ -\ Terrible\!\ How\ Terrible\ For\ The\ Great\ City\!.mp3'
+  lib.getSongAudio req.params.artist, req.params.album, req.params.song, (audio) ->
+    res.sendfile audio
 
 app.get '/api/cover/:artist/:album', (req, res) ->
-  res.sendfile '/Users/marcus/Music/iTunes/iTunes\ Media/Music/As\ Cities\ Burn/Son,\ I\ Loved\ You\ At\ Your\ Darkest/folder.jpg'
+  lib.getAlbumCover req.params.artist, req.params.album, (cover) ->
+    res.sendfile cover
 
 app.get '/api/album/:artist/:album', (req, res) ->
-  res.send
-    artist:
-      name: 'As Cities Burn'
-    album:
-      name: 'Son, I Loved You At Your Darkest'
-      year: '2005'
-      songs: [
-        'Thus From My Lips, By Yours, My Sin Is Purged',
-        'Love Jealous One, Love',
-        'Incomplete Is a Leech',
-        'Bloodsucker Pt. II',
-        'Terrible! How Terrible for the Great City!',
-        'The Widow',
-        'Wake Dead Man, Wake',
-        'Admission:Regret',
-        'One:Twentyseven',
-        'Of Want and Misery:The Nothing That Kills'
-      ]
+  lib.getAlbum req.params.artist, req.params.album, (album) ->
+    res.send album
 
-exports.loadApp = ->
-  app
+exports.loadApp = (port) ->
+  lib.on 'loaded', =>
+    console.log "library loaded ✓"
+    app.listen port
+    console.log "rifffz running ✓"
+    console.log "\ncheck it out in your browser at http://127.0.0.1:#{port}"
