@@ -43,6 +43,9 @@ class Library extends EventEmitter
     @settings = _.defaults settings, @settings
     @
   
+  setArtist: (artistSlug, artistName) ->
+    @setVal "artist:#{artistSlug}", artistName
+  
   getArtist: (artist, callback) ->
     @valForKey "artist:#{artist}", (val) ->
       callback
@@ -70,6 +73,10 @@ class Library extends EventEmitter
   getSongAudio: (artist, album, song, callback) ->
     @valForKey "artist:#{artist}:album:#{album}:song:#{song}:audio", (val) ->
       callback val
+  
+  setVal: (key, val) ->
+    @client.set key, val, (err, reply) ->
+      console.log err if err
   
   valForKey: (key, callback) ->
     @client.get key, (err, reply) ->

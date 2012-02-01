@@ -26,7 +26,7 @@ rifffz = require '../'
 lib = rifffz.loadLibrary().withSettings(debug: true, redis: { redisDB: 9 })
 lib.on 'loaded', ->
   lib.reset ->
-    lib.client.set 'artist:the-black-keys', 'The Black Keys'
+    lib.setArtist 'the-black-keys', 'The Black Keys'
     lib.client.set 'artist:the-black-keys:album:el-camino', 'El Camino'
     lib.client.set 'artist:the-black-keys:album:el-camino:year', '2011'
     lib.client.set 'artist:the-black-keys:album:el-camino:cover', '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg'
