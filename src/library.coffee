@@ -1,6 +1,7 @@
 _            = require 'underscore'
 redis        = require 'redis'
 EventEmitter = require('events').EventEmitter
+util         = require('./util').Util
 
 # Manages the library of music available on the machine
 # using a local Redis server instance.
@@ -43,14 +44,21 @@ class Library extends EventEmitter
     @settings = _.defaults settings, @settings
     @
   
-  setArtist: (artistSlug, artistName) ->
-    @setVal "artist:#{artistSlug}", artistName
+  addArtist: (artist) ->
+    @setVal "artist:#{util.slugify artist}", artist
   
   getArtist: (artist, callback) ->
     @valForKey "artist:#{artist}", (val) ->
       callback
         artist:
           name: val
+  
+  addAlbum: (album) ->
+    resource = "artist:#{util.slugify album.artist.name}:album:#{util.slugify album.name}"
+    @client.set resource, album.name
+    @client.set "#{resource}:year", album.year
+    @client.set "#{resource}:cover", album.cover
+    @client.rpush "#{resource}:songs:#{util.slugify song}", song for song in album.songs
   
   getAlbum: (artist, album, callback) ->
     resource = "artist:#{artist}:album:#{album}"
