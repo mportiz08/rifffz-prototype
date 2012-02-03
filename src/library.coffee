@@ -53,26 +53,29 @@ class Library extends EventEmitter
         artist:
           name: val
   
-  addAlbum: (album) ->
-    resource = "artist:#{util.slugify album.artist.name}:album:#{util.slugify album.name}"
-    @client.set resource, album.name
-    @client.set "#{resource}:year", album.year
-    @client.set "#{resource}:cover", album.cover
-    @client.rpush "#{resource}:songs:#{util.slugify song}", song for song in album.songs
+  addAlbum: (json) ->
+    @addArtist json.artist.name
+    resource = "artist:#{util.slugify json.artist.name}:album:#{util.slugify json.album.name}"
+    @setVal resource, json.album.name
+    @setVal "#{resource}:year", json.album.year
+    @setVal "#{resource}:cover", json.album.cover
+    @client.rpush "#{resource}:songs", song for song in json.album.songs
   
   getAlbum: (artist, album, callback) ->
     resource = "artist:#{artist}:album:#{album}"
     @getArtist artist, (artistJSON) =>
       @valForKey resource, (albumName) =>
         @valForKey "#{resource}:year", (albumYear) =>
-          @valForListKey "#{resource}:songs", (albumSongs) =>
-            callback
-              artist:
-                name: artistJSON.artist.name
-              album:
-                name: albumName
-                year: albumYear
-                songs: albumSongs
+          @valForKey "#{resource}:cover", (albumCover) =>
+            @valForListKey "#{resource}:songs", (albumSongs) =>
+              callback
+                artist:
+                  name: artistJSON.artist.name
+                album:
+                  name: albumName
+                  year: albumYear
+                  cover: albumCover
+                  songs: albumSongs
   
   getAlbumCover: (artist, album, callback) ->
     @valForKey "artist:#{artist}:album:#{album}:cover", (val) ->
