@@ -1,6 +1,8 @@
 _            = require 'underscore'
 redis        = require 'redis'
 EventEmitter = require('events').EventEmitter
+util         = require('./util').Util
+client       = redis.createClient()
 
 # Manages the library of music available on the machine
 # using a local Redis server instance.
@@ -29,7 +31,7 @@ class Library extends EventEmitter
     @settings = {}
     @settings.redis = {}
     @settings.redis.redisDB = 0
-    @client = redis.createClient()
+    @client = client
     @client.on 'ready', =>
       @client.select @settings.redis.redisDB, (err, reply) =>
         console.log err if err
@@ -43,25 +45,38 @@ class Library extends EventEmitter
     @settings = _.defaults settings, @settings
     @
   
+  addArtist: (artist) ->
+    @setVal "artist:#{util.slugify artist}", artist
+  
   getArtist: (artist, callback) ->
     @valForKey "artist:#{artist}", (val) ->
       callback
         artist:
           name: val
   
+  addAlbum: (json) ->
+    @addArtist json.artist.name
+    resource = "artist:#{util.slugify json.artist.name}:album:#{util.slugify json.album.name}"
+    @setVal resource, json.album.name
+    @setVal "#{resource}:year", json.album.year
+    @setVal "#{resource}:cover", json.album.cover
+    @client.rpush "#{resource}:songs", song for song in json.album.songs
+  
   getAlbum: (artist, album, callback) ->
     resource = "artist:#{artist}:album:#{album}"
     @getArtist artist, (artistJSON) =>
       @valForKey resource, (albumName) =>
         @valForKey "#{resource}:year", (albumYear) =>
-          @valForListKey "#{resource}:songs", (albumSongs) =>
-            callback
-              artist:
-                name: artistJSON.artist.name
-              album:
-                name: albumName
-                year: albumYear
-                songs: albumSongs
+          @valForKey "#{resource}:cover", (albumCover) =>
+            @valForListKey "#{resource}:songs", (albumSongs) =>
+              callback
+                artist:
+                  name: artistJSON.artist.name
+                album:
+                  name: albumName
+                  year: albumYear
+                  cover: albumCover
+                  songs: albumSongs
   
   getAlbumCover: (artist, album, callback) ->
     @valForKey "artist:#{artist}:album:#{album}:cover", (val) ->
@@ -70,6 +85,10 @@ class Library extends EventEmitter
   getSongAudio: (artist, album, song, callback) ->
     @valForKey "artist:#{artist}:album:#{album}:song:#{song}:audio", (val) ->
       callback val
+  
+  setVal: (key, val) ->
+    @client.set key, val, (err, reply) ->
+      console.log err if err
   
   valForKey: (key, callback) ->
     @client.get key, (err, reply) ->
