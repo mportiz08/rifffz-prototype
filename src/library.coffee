@@ -2,6 +2,7 @@ _            = require 'underscore'
 redis        = require 'redis'
 EventEmitter = require('events').EventEmitter
 util         = require('./util').Util
+client       = redis.createClient()
 
 # Manages the library of music available on the machine
 # using a local Redis server instance.
@@ -30,7 +31,7 @@ class Library extends EventEmitter
     @settings = {}
     @settings.redis = {}
     @settings.redis.redisDB = 0
-    @client = redis.createClient()
+    @client = client
     @client.on 'ready', =>
       @client.select @settings.redis.redisDB, (err, reply) =>
         console.log err if err

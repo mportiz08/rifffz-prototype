@@ -36,7 +36,7 @@
             assert.equal(path, '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg');
             return lib.getSongAudio('the-black-keys', 'el-camino', 'lonely-boy', function(path) {
               assert.equal(path, '/Users/marcus/Music/TheBlackKeys/ElCamino/LonelyBoy.mp3');
-              return process.exit();
+              return lib.close();
             });
           });
         });

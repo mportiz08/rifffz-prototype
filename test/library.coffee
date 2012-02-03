@@ -44,4 +44,4 @@ lib.on 'loaded', ->
           assert.equal path, '/Users/marcus/Music/TheBlackKeys/ElCamino/folder.jpg'
           lib.getSongAudio 'the-black-keys', 'el-camino', 'lonely-boy', (path) ->
             assert.equal path, '/Users/marcus/Music/TheBlackKeys/ElCamino/LonelyBoy.mp3'
-            process.exit()
+            lib.close()
