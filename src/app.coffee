@@ -22,8 +22,15 @@ app.get '/api/album/:artist/:album', (req, res) ->
     res.send album
 
 exports.loadApp = (port) ->
-  lib.on 'loaded', =>
+  lib.on 'loaded', ->
     console.log "library loaded ✓"
     app.listen port
     console.log "rifffz running ✓"
     console.log "\ncheck it out in your browser at http://127.0.0.1:#{port}"
+
+exports.resetLibrary = ->
+  lib.on 'loaded', ->
+    lib.reset ->
+      lib.close
+      console.log 'library reset ✓'
+      process.exit()
