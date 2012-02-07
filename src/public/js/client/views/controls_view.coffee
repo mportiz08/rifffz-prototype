@@ -1,3 +1,5 @@
+util = require 'util'
+
 class ControlsView extends Backbone.View
   el: 'div.top-bar div.container div.row'
   
@@ -5,6 +7,8 @@ class ControlsView extends Backbone.View
     'click .play-pause': 'togglePlay'
   
   initialize: ->
+    $('audio').attr 'src', "/api/audio/#{util.slugify @model.get('artist')}/#{util.slugify @model.get('name')}/#{util.slugify @model.get('songs')[0]}"
+    
     @playPauseEl = $(@el).find '.play-pause'
     @progressEl = $(@el).find '.progress-bar span'
     @timePassedEl = $(@el).find '.time-passed'

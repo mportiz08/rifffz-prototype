@@ -17,7 +17,7 @@ class Router extends Backbone.Router
         artist: artistName
         album: albumName
       albumView.render()
-      controlsView = new ControlsView()
+      controlsView = new ControlsView(model: album)
       controlsView.render()
 
 module.exports = Router
