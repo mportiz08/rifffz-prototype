@@ -8,6 +8,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+a, a:visited, a:hover, a:active {
+  color: #fff;
+}
+
 #player {
   background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   height: 100%;
@@ -109,6 +113,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .album-info h1 {
+  font-size: 36px;
+  margin-bottom: 5px;
   text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.75);
 }
 
@@ -120,17 +126,8 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 
-.album-info h1 {
-  font-size: 36px;
-}
-
 .album-info h2 {
   color: #eee;
-}
-
-.album-info .album-year-released {
-  color: #aaa;
-  font-weight: normal;
 }
 
 .album-song-list {
@@ -147,7 +144,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .album-song-list .now-playing {
   color: #fff;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   padding: 10px 0;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);

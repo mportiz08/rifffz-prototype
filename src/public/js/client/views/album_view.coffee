@@ -6,6 +6,7 @@ class AlbumView extends Backbone.View
   
   initialize: ->
     @titleEl = $(@el).find 'h1'
+    @dateEl = $(@el).find 'small'
     @artistEl = $(@el).find 'h2'
   
   setParams: (params) ->
@@ -14,9 +15,10 @@ class AlbumView extends Backbone.View
   
   render: ->
     @titleEl.empty()
+    @dateEl.empty()
     @artistEl.empty()
     @titleEl.text @model.get('name')
-    @titleEl.append "<span class=\"album-year-released\">&nbsp;(#{@model.get('year')})</span>"
+    @dateEl.text "#{@model.get('year')}"
     @artistEl.text @model.get('artist')
     new AlbumCoverView(model: @model).setParams(@params).render()
     new AlbumSongListView(model: @model).render()
