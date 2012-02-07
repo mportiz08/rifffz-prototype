@@ -8,14 +8,9 @@ class AlbumSongListView extends Backbone.View
     $(@el).empty()
     _.each @model.get('songs'), (s) =>
       $(@el).append "<li><a href=\"#\">#{s}</a></li>"
-    #$(@el).find('li').first().addClass 'now-playing'
-    #$(@el).find('li').first().html "<span class=\"label success\">now playing</span> #{$(@el).find('li').first().html()}"
     @
   
   chooseSong: (e) ->
-    #console.log $(e.target).text()
-    #console.log window.controls
-    trackName = $(e.target).text()
     trackNo = $(e.target).parent().prevAll().length
     window.controls.changeTrack trackNo
     false
