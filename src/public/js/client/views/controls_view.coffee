@@ -7,7 +7,8 @@ class ControlsView extends Backbone.View
     'click .play-pause': 'togglePlay'
   
   initialize: ->
-    $('audio').attr 'src', "/api/audio/#{util.slugify @model.get('artist')}/#{util.slugify @model.get('name')}/#{util.slugify @model.get('songs')[0]}"
+    #$('audio').attr 'src', "/api/audio/#{util.slugify @model.get('artist')}/#{util.slugify @model.get('name')}/#{util.slugify @model.get('songs')[0]}"
+    @changeTrack 0
     
     @playPauseEl = $(@el).find '.play-pause'
     @progressEl = $(@el).find '.progress-bar span'
@@ -58,5 +59,9 @@ class ControlsView extends Backbone.View
   setPlayIcon: ->
     @playPauseEl.removeClass 'sprite-icons-Pause'
     @playPauseEl.addClass 'sprite-icons-Play'
+  
+  changeTrack: (trackNo) ->
+    $('audio').attr 'src', "/api/audio/#{util.slugify @model.get('artist')}/#{util.slugify @model.get('name')}/#{util.slugify @model.get('songs')[trackNo]}"
+    $('ul.album-song-list.unstyled').trigger('updateNowPlaying', [trackNo])
 
 module.exports = ControlsView

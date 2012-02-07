@@ -8,6 +8,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+a, a:visited, a:hover, a:active {
+  color: #fff;
+}
+
 #player {
   background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   height: 100%;
