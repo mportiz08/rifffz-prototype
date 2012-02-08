@@ -1,10 +1,16 @@
 express = require 'express'
 lib     = require('./library').loadLibrary()
+stitch  = require 'stitch'
+
+client = stitch.createPackage
+  paths: [__dirname + '/public/js/client']
 
 app = express.createServer()
 app.set 'view engine', 'jade'
 app.set 'views', "#{__dirname}/views"
 app.use express.static "#{__dirname}/public"
+
+app.get '/js/client.js', client.createServer()
 
 app.get '/', (req, res) ->
   res.render 'index'

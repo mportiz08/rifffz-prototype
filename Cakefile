@@ -32,6 +32,8 @@ task 'test', "Test source files", ->
   #mocha.stdout.on 'data', (data) -> process.stdout.write data.toString()
   #mocha.stderr.on 'data', (data) -> process.stderr.write data.toString()
 
+# don't use this anymore:
+# the client.js file is re-generated if needed on GET requests for it
 task 'client', "Build client.js file.", ->
   client = stitch.createPackage
     paths: [__dirname + '/lib/public/js/client']
