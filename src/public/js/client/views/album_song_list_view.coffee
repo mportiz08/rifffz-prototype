@@ -16,7 +16,6 @@ class AlbumSongListView extends Backbone.View
     false
   
   updateNowPlaying: (e, trackNo) ->
-    console.log 'update called'
     trackEl = $(@el).find('li').eq trackNo
     $('.now-playing .label').remove()
     $('.now-playing').removeClass 'now-playing'
