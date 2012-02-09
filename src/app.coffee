@@ -37,6 +37,5 @@ exports.loadApp = (port) ->
 exports.resetLibrary = ->
   lib.on 'loaded', ->
     lib.reset ->
-      lib.close
+      lib.close()
       console.log 'library reset ✓'
-      process.exit()
