@@ -1,6 +1,8 @@
 {Importer} = require '../src/importer'
+fs = require 'fs'
 
-takeCare = '/Users/marcus/Music/iTunes/iTunes\ Media/Music/Explosions\ in\ the\ Sky/Take\ Care,\ Take\ Care,\ Take\ Care'
+dir = '/Users/marcus/Music/iTunes/iTunes\ Media/Music/O\'Brother/Garden\ Window'
 importer = new Importer()
-importer.importAlbum takeCare, (album) ->
-  console.log album
+importer.importAlbum dir, (info) ->
+  console.log info
+  fs.writeFile "#{__dirname}/folder.jpg", info.album.cover

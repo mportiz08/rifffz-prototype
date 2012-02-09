@@ -1,14 +1,17 @@
 (function() {
-  var Importer, importer, takeCare;
+  var Importer, dir, fs, importer;
 
   Importer = require('../src/importer').Importer;
 
-  takeCare = '/Users/marcus/Music/iTunes/iTunes\ Media/Music/Explosions\ in\ the\ Sky/Take\ Care,\ Take\ Care,\ Take\ Care';
+  fs = require('fs');
+
+  dir = '/Users/marcus/Music/iTunes/iTunes\ Media/Music/O\'Brother/Garden\ Window';
 
   importer = new Importer();
 
-  importer.importAlbum(takeCare, function(album) {
-    return console.log(album);
+  importer.importAlbum(dir, function(info) {
+    console.log(info);
+    return fs.writeFile("" + __dirname + "/folder.jpg", info.album.cover);
   });
 
 }).call(this);

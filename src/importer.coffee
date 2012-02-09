@@ -18,10 +18,11 @@ class Importer
       id3.parse()
       callback
         artist:
-          name: id3.get 'artist'
+          name:  id3.get 'artist'
         album:
-          name: id3.get 'album'
-          year: id3.get 'year'
+          name:  id3.get 'album'
+          year:  id3.get 'year'
+          cover: id3.get('picture').data
   
   getSongTitles: (files) ->
     _.map files, (file) ->
