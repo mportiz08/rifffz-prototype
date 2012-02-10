@@ -54,13 +54,13 @@ class Library extends EventEmitter
         artist:
           name: val
   
-  addAlbum: (json) ->
-    @addArtist json.artist.name
-    resource = "artist:#{util.slugify json.artist.name}:album:#{util.slugify json.album.name}"
-    @setVal resource, json.album.name
-    @setVal "#{resource}:year", json.album.year
-    @setVal "#{resource}:cover", json.album.cover
-    @client.rpush "#{resource}:songs", song for song in json.album.songs
+  addAlbum: (info) ->
+    @addArtist info.artist.name
+    resource = "artist:#{util.slugify info.artist.name}:album:#{util.slugify info.album.name}"
+    @setVal resource, info.album.name
+    @setVal "#{resource}:year", info.album.year
+    @setVal "#{resource}:cover", info.album.cover
+    @client.rpush "#{resource}:songs", song for song in info.album.songs
   
   getAlbum: (artist, album, callback) ->
     resource = "artist:#{artist}:album:#{album}"

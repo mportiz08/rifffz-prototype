@@ -9,7 +9,7 @@ class Importer
     fs.readdir dir, (err, files) =>
       mp3s = (path.join(dir, mp3) for mp3 in util.onlyMP3s(files))
       @getAlbumInfo mp3s[0], (info) =>
-        info.album.songs = @getSongTitles mp3s
+        info.album.songs = @getSongs mp3s
         callback info
   
   getAlbumInfo: (file, callback) ->
@@ -24,10 +24,13 @@ class Importer
           year:  id3.get 'year'
           cover: id3.get('picture').data
   
-  getSongTitles: (files) ->
+  getSongs: (files) ->
     _.map files, (file) ->
+      song = {}
       id3 = new ID3(fs.readFileSync file) # TODO: make this async eventually...
       id3.parse()
-      id3.get 'title'
+      song.name = id3.get 'title'
+      song.path = file
+      song
 
 exports.Importer = Importer
