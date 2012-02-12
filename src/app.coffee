@@ -27,6 +27,9 @@ app.get '/api/album/:artist/:album', (req, res) ->
   lib.getAlbum req.params.artist, req.params.album, (album) ->
     res.send album
 
+app.post '/api/album/:artist/:album', (req, res) ->
+  console.log "posted w/ #{req.params.artist},#{req.params.album}"
+
 exports.loadApp = (port) ->
   lib.on 'loaded', ->
     console.log "library loaded ✓"
