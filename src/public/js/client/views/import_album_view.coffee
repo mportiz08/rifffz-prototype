@@ -1,3 +1,5 @@
+util = require 'util'
+
 class ImportAlbumView extends Backbone.View
   el: 'div#import-album-modal'
   
@@ -5,7 +7,12 @@ class ImportAlbumView extends Backbone.View
     'click a.btn.primary': 'importAlbum'
   
   importAlbum: ->
-    console.log 'importing album'
+    path = $(@el).find('input.album-path').val()
+    $.post '/api/album',
+      path: path, (data, textStatus, jqXHR) =>
+        console.log 'success'
+        #$(@el).find('.modal-body').append '<div class="alert-message success">post finished</div>'
+    false
 
 module.exports = ImportAlbumView
   

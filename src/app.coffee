@@ -9,6 +9,7 @@ app = express.createServer()
 app.set 'view engine', 'jade'
 app.set 'views', "#{__dirname}/views"
 app.use express.static "#{__dirname}/public"
+app.use express.bodyParser()
 
 app.get '/js/client.js', client.createServer()
 
@@ -27,8 +28,9 @@ app.get '/api/album/:artist/:album', (req, res) ->
   lib.getAlbum req.params.artist, req.params.album, (album) ->
     res.send album
 
-app.post '/api/album/:artist/:album', (req, res) ->
-  console.log "posted w/ #{req.params.artist},#{req.params.album}"
+app.post '/api/album', (req, res) ->
+  path = req.body.path
+  res.send 'hello, world'
 
 exports.loadApp = (port) ->
   lib.on 'loaded', ->
