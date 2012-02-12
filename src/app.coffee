@@ -21,7 +21,7 @@ app.get '/api/audio/:artist/:album/:song', (req, res) ->
 
 app.get '/api/cover/:artist/:album', (req, res) ->
   lib.getAlbumCover req.params.artist, req.params.album, (cover) ->
-    res.sendfile cover
+    res.send new Buffer(cover, 'binary')
 
 app.get '/api/album/:artist/:album', (req, res) ->
   lib.getAlbum req.params.artist, req.params.album, (album) ->

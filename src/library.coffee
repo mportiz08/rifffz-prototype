@@ -60,7 +60,8 @@ class Library extends EventEmitter
     @setVal resource, info.album.name
     @setVal "#{resource}:year", info.album.year
     @setVal "#{resource}:cover", info.album.cover
-    @client.rpush "#{resource}:songs", song for song in info.album.songs
+    @client.rpush "#{resource}:songs", song.name for song in info.album.songs
+    @setVal "#{resource}:song:#{util.slugify song.name}:audio", song.path for song in info.album.songs
   
   getAlbum: (artist, album, callback) ->
     resource = "artist:#{artist}:album:#{album}"

@@ -22,7 +22,7 @@ class Importer
         album:
           name:  id3.get 'album'
           year:  id3.get 'year'
-          cover: id3.get('picture').data
+          cover: id3.get('picture').data.toString('binary')
   
   getSongs: (files) ->
     _.map files, (file) ->
