@@ -1,4 +1,5 @@
-util = require 'util'
+util            = require 'util'
+ImportAlbumView = require 'views/import_album_view'
 
 class ControlsView extends Backbone.View
   el: 'div.top-bar div.container div.row'
@@ -7,6 +8,8 @@ class ControlsView extends Backbone.View
     'click .play-pause': 'togglePlay'
   
   initialize: ->
+    @importView = new ImportAlbumView()
+    
     @changeTrack 0
     
     @playPauseEl = $(@el).find '.play-pause'

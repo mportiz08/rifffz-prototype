@@ -22,6 +22,18 @@ a, a:visited, a:hover, a:active {
   padding-top: 75px;
 }
 
+.modal, .modal-body a, .modal a:visited, .modal a:hover, .modal a:active, .modal h1, .modal h2, .modal h3, .modal h4, .modal h5, .modal h6 {
+  color: #333;
+}
+
+.modal .btn.primary {
+  color: #fff;
+}
+
+.import-status {
+  text-align: center;
+}
+
 .label {
   vertical-align: middle;
 }
@@ -128,6 +140,10 @@ a, a:visited, a:hover, a:active {
 
 .album-info h2 {
   color: #eee;
+}
+
+.album-year {
+  color: #ccc;
 }
 
 .album-song-list {
