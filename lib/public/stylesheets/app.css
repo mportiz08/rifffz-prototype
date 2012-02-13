@@ -30,6 +30,10 @@ a, a:visited, a:hover, a:active {
   color: #fff;
 }
 
+.import-status {
+  text-align: center;
+}
+
 .label {
   vertical-align: middle;
 }

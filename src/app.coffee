@@ -1,6 +1,7 @@
-express = require 'express'
-lib     = require('./library').loadLibrary()
-stitch  = require 'stitch'
+express    = require 'express'
+{Importer} = require './importer'
+lib        = require('./library').loadLibrary()
+stitch     = require 'stitch'
 
 client = stitch.createPackage
   paths: [__dirname + '/public/js/client']
@@ -29,8 +30,12 @@ app.get '/api/album/:artist/:album', (req, res) ->
     res.send album
 
 app.post '/api/album', (req, res) ->
-  path = req.body.path
-  res.send 'hello, world'
+  i = new Importer()
+  i.importAlbum req.body.path, (info) ->
+    lib.addAlbum info, (artist, album) ->
+      res.send
+        artist: artist
+        album: album
 
 exports.loadApp = (port) ->
   lib.on 'loaded', ->
