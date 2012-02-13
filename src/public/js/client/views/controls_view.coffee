@@ -10,8 +10,6 @@ class ControlsView extends Backbone.View
   initialize: ->
     @importView = new ImportAlbumView()
     
-    @changeTrack 0
-    
     @playPauseEl = $(@el).find '.play-pause'
     @progressEl = $(@el).find '.progress-bar span'
     @timePassedEl = $(@el).find '.time-passed'
@@ -20,6 +18,9 @@ class ControlsView extends Backbone.View
     @audio = $('audio').get 0
     $(@audio).bind 'canplay', @initDuration
     $(@audio).bind 'timeupdate', @updateProgress
+    
+    @changeTrack 0
+    @togglePlay()
   
   initDuration: =>
     duration = parseInt(@audio.duration, 10)
@@ -65,5 +66,7 @@ class ControlsView extends Backbone.View
   changeTrack: (trackNo) ->
     $('audio').attr 'src', "/api/audio/#{util.slugify @model.get('artist')}/#{util.slugify @model.get('name')}/#{util.slugify @model.get('songs')[trackNo]}"
     $('ul.album-song-list.unstyled').trigger('updateNowPlaying', [trackNo])
+    @togglePlay()
+    @updateProgress()
 
 module.exports = ControlsView
