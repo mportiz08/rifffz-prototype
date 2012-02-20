@@ -69,7 +69,7 @@ class Library extends EventEmitter
     @valForListKey 'albums:all', (albumKeys) ->
       albums = _.map albumKeys, (key) ->
         params = key.split ':'
-        {artist: params[0], name: params[1]}
+        {artist: params[0], name: params[1], cover: "/api/cover/#{params[0]}/#{params[1]}"}
       callback albums
   
   getAlbum: (artist, album, callback) ->
