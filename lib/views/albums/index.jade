@@ -3,6 +3,6 @@
     .span16
       ul.media-grid
         each album in albums
-          li
+          li(data-artist=album.artist, data-album=album.name)
             a(href="#")
               img.thumbnail(src="http://placehold.it/210x210")

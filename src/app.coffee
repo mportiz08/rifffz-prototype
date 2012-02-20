@@ -15,8 +15,9 @@ app.use express.bodyParser()
 app.get '/js/client.js', client.createServer()
 
 app.get '/', (req, res) ->
-  res.render 'albums',
-    albums: [1..34] # temporary
+  lib.getAlbums (albums) ->
+    res.render 'albums',
+      albums: albums
 
 app.get '/:artist/:album', (req, res) ->
   lib.getAlbum req.params.artist, req.params.album, (info) ->
