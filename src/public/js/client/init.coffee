@@ -1,5 +1,1 @@
-Router = require('routers/router')
-
-$ ->
-  window.router = new Router()
-  Backbone.history.start()
+require 'albums/show'
