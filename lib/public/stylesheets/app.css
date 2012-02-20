@@ -166,6 +166,14 @@ a, a:visited, a:hover, a:active {
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
 }
 
+#library {
+  padding-top: 15px;
+}
+
+.media-grid a:hover {
+  border-color: #ccc;
+}
+
 .sprite-icons-Wikipedia,
 .sprite-icons-Wifi,
 .sprite-icons-Waterdrop,
