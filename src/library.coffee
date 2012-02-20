@@ -66,11 +66,18 @@ class Library extends EventEmitter
     callback(util.slugify(info.artist.name), util.slugify(info.album.name)) if callback?
   
   getAlbums: (callback) ->
-    @valForListKey 'albums:all', (albumKeys) ->
-      albums = _.map albumKeys, (key) ->
+    @valForListKey 'albums:all', (albumKeys) =>
+      albums = []
+      _.each albumKeys, (key) =>
         params = key.split ':'
-        {artist: params[0], name: params[1], cover: "/api/cover/#{params[0]}/#{params[1]}"}
-      callback albums
+        @valForKey "artist:#{params[0]}", (artist) =>
+          @valForKey "artist:#{params[0]}:album:#{params[1]}", (album) ->
+            albums.push
+              artist: artist,
+              name: album,
+              cover: "/api/cover/#{params[0]}/#{params[1]}",
+              path: "/#{params[0]}/#{params[1]}"
+            callback(albums) if albums.length == albumKeys.length
   
   getAlbum: (artist, album, callback) ->
     resource = "artist:#{artist}:album:#{album}"
