@@ -1,0 +1,55 @@
+div#player
+  div#import-album-modal.modal.hide.fade
+    div.modal-header
+      a.close(data-dismiss="modal") ×
+      h3 Import Album
+    div.modal-body
+      form
+        fieldset
+          legend album folder location
+          div.clearfix
+            label(for="album-path") (absolute path)
+            div.input
+              input.album-path.span5(id="album-path", name="album-path", size="30", type="text")
+    div.modal-footer
+      a.btn.primary(href="#") Import
+      a.btn(href="#", data-dismiss="modal") Close
+  div.top-bar
+    div.container
+      div.row
+        div.span2.controls
+          ul.unstyled
+            li
+              a(href="#").sprite-icons-Back
+            li
+              a(href="#").play-pause.sprite-icons-Play
+            li
+              a(href="#").sprite-icons-Next
+        div.span2.controls
+          ul.unstyled
+            li
+              a(href="#").sprite-icons-Search
+            li
+              a(href="#import-album-modal", data-toggle="modal").import-album.sprite-icons-Add
+        div.span1
+          div.time-passed 0:00
+        div.span9.progress
+          div.progress-bar
+            span(style="width: 0%;")
+        div.span2
+          div.time-total 0:00
+        audio
+          source(src="", type="audio/mpeg")
+  div#main.container
+    div.row
+      div.album-cover-view.span8
+        div.album-cover
+          div.album-cover-overlay
+      div.album-info.span8
+        h1= album.name
+        small.album-year= album.year
+        h2= artist.name
+        ul.album-song-list.unstyled
+          each song in album.songs
+            li
+              a(href="#")= song
