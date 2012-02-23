@@ -1,17 +1,18 @@
 util = require 'util'
 
 class Controls
-  constructor: (@artist, @album, @songs) ->
-    el = '.top-bar .row'
-    @playPauseEl = $(el).find '.play-pause'
-    @progressEl = $(el).find '.progress-bar span'
-    @timePassedEl = $(el).find '.time-passed'
-    @timeTotalEl = $(el).find '.time-total'
+  constructor: (@artist, @album, @songs) ->    
+    @playPauseEl  = $('.play-pause')
+    @progressEl   = $('.progress-bar span')
+    @timePassedEl = $('.time-passed')
+    @timeTotalEl  = $('.time-total')
+    @songListEl   = $('.album-song-list')
     
     @audio = $('audio').get 0
     $(@audio).bind 'canplay', @initDuration
     $(@audio).bind 'timeupdate', @updateProgress
-    @playPauseEl.bind 'click', @togglePlay
+    @playPauseEl.click @togglePlay
+    @songListEl.on 'click', 'li a', @clickTrack
     
     @changeTrack 0
     @togglePlay()
@@ -56,11 +57,24 @@ class Controls
   setPlayIcon: ->
     @playPauseEl.removeClass 'sprite-icons-Pause'
     @playPauseEl.addClass 'sprite-icons-Play'
+  
+  clickTrack: (event) =>
+    console.log 'click track event'
+    trackNo = $(event.target).parent().prevAll().length
+    @changeTrack trackNo
+    false
 
   changeTrack: (trackNo) ->
+    @updateNowPlaying trackNo
     $('audio').attr 'src', "/api/audio/#{util.slugify @artist}/#{util.slugify @album}/#{util.slugify @songs[trackNo]}"
-    $('ul.album-song-list.unstyled').trigger('updateNowPlaying', [trackNo])
     @togglePlay()
     @updateProgress()
+  
+  updateNowPlaying: (trackNo) ->
+    trackEl = @songListEl.find('li').eq trackNo
+    $('.now-playing .label').remove()
+    $('.now-playing').removeClass 'now-playing'
+    $(trackEl).addClass 'now-playing'
+    $(trackEl).html "<span class=\"label success\">now playing</span> #{trackEl.html()}"
 
 module.exports = Controls
