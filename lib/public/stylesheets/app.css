@@ -13,7 +13,6 @@ a, a:visited, a:hover, a:active {
 }
 
 #player {
-  background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   height: 100%;
   width: 100%;
 }
