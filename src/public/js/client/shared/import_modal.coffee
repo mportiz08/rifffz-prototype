@@ -8,7 +8,7 @@ importAlbum = ->
     path: path, (data, textStatus, jqXHR) =>
       $(el).find('.import-status').remove()
       $(el).modal 'hide'
-      document.location.href = "/\##{data.artist}/#{data.album}"
+      document.location.href = "/#{data.artist}/#{data.album}"
   false
 
 $ ->
