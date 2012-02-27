@@ -1,19 +1,5 @@
 div#player
-  div#import-album-modal.modal.hide.fade
-    div.modal-header
-      a.close(data-dismiss="modal") ×
-      h3 Import Album
-    div.modal-body
-      form
-        fieldset
-          legend album folder location
-          div.clearfix
-            label(for="album-path") (absolute path)
-            div.input
-              input.album-path.span5(id="album-path", name="album-path", size="30", type="text")
-    div.modal-footer
-      a.btn.primary(href="#") Import
-      a.btn(href="#", data-dismiss="modal") Close
+  != partial('shared/import_modal')
   div.top-bar
     div.container
       div.row
