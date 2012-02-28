@@ -13,6 +13,7 @@ class Controls
     @audio = $('audio').get 0
     $(@audio).bind 'canplay', @initDuration
     $(@audio).bind 'timeupdate', @updateProgress
+    $(@audio).bind 'ended', @nextTrack
     
     @playPauseEl.click @togglePlay
     @prevTrackEl.click @prevTrack
