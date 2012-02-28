@@ -13,7 +13,6 @@ a, a:visited, a:hover, a:active {
 }
 
 #player {
-  background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   height: 100%;
   width: 100%;
 }
@@ -164,6 +163,41 @@ a, a:visited, a:hover, a:active {
   font-weight: bold;
   padding: 10px 0;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+}
+
+.media-grid a {
+  text-decoration: none;
+}
+
+.media-grid a small {
+  font-size: 16px;
+}
+
+#library {
+  padding-top: 15px;
+}
+
+#library .media-grid a {
+  background-size: contain;
+  border: 1px solid #000;
+  display: block;
+  padding: 0;
+  width: 210px;
+  height: 210px;
+}
+
+#library .media-grid a:hover {
+  border: 1px solid #fff;
+}
+
+#library .media-grid a .hover {
+  background: rgba(255, 255, 255, 0.75);
+  color: #000;
+  font-size: 26px;
+  height: 160px;
+  line-height: 25px;
+  padding: 25px 15px;
+  text-align: center;
 }
 
 .sprite-icons-Wikipedia,

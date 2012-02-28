@@ -1,0 +1,11 @@
+#library.container
+  != partial('shared/import_modal')
+  .row
+    .span16
+      a(href="#import-album-modal", data-toggle="modal") import album
+  .row
+    .span16
+      ul.media-grid
+        each album in albums
+          li(data-artist=album.artist, data-album=album.name)
+            a(href=album.path, style='background: url("'+album.cover+'");')

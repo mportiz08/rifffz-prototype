@@ -62,7 +62,22 @@ class Library extends EventEmitter
     @setVal "#{resource}:cover", info.album.cover
     @client.rpush "#{resource}:songs", song.name for song in info.album.songs
     @setVal "#{resource}:song:#{util.slugify song.name}:audio", song.path for song in info.album.songs
+    @client.rpush 'albums:all', "#{util.slugify info.artist.name}:#{util.slugify info.album.name}"
     callback(util.slugify(info.artist.name), util.slugify(info.album.name)) if callback?
+  
+  getAlbums: (callback) ->
+    @valForListKey 'albums:all', (albumKeys) =>
+      albums = []
+      _.each albumKeys, (key) =>
+        params = key.split ':'
+        @valForKey "artist:#{params[0]}", (artist) =>
+          @valForKey "artist:#{params[0]}:album:#{params[1]}", (album) ->
+            albums.push
+              artist: artist,
+              name: album,
+              cover: "/api/cover/#{params[0]}/#{params[1]}",
+              path: "/#{params[0]}/#{params[1]}"
+            callback(albums) if albums.length == albumKeys.length
   
   getAlbum: (artist, album, callback) ->
     resource = "artist:#{artist}:album:#{album}"

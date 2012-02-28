@@ -15,7 +15,15 @@ app.use express.bodyParser()
 app.get '/js/client.js', client.createServer()
 
 app.get '/', (req, res) ->
-  res.render 'index'
+  lib.getAlbums (albums) ->
+    res.render 'albums',
+      albums: albums
+
+app.get '/:artist/:album', (req, res) ->
+  lib.getAlbum req.params.artist, req.params.album, (info) ->
+    res.render 'albums/show',
+      artist: info.artist,
+      album: info.album
 
 app.get '/api/audio/:artist/:album/:song', (req, res) ->
   lib.getSongAudio req.params.artist, req.params.album, req.params.song, (audio) ->

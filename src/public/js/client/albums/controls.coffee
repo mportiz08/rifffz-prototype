@@ -1,27 +1,22 @@
-util            = require 'util'
-ImportAlbumView = require 'views/import_album_view'
+util = require 'util'
 
-class ControlsView extends Backbone.View
-  el: 'div.top-bar div.container div.row'
-  
-  events:
-    'click .play-pause': 'togglePlay'
-  
-  initialize: ->
-    @importView = new ImportAlbumView()
-    
-    @playPauseEl = $(@el).find '.play-pause'
-    @progressEl = $(@el).find '.progress-bar span'
-    @timePassedEl = $(@el).find '.time-passed'
-    @timeTotalEl = $(@el).find '.time-total'
+class Controls
+  constructor: (@artist, @album, @songs) ->    
+    @playPauseEl  = $('.play-pause')
+    @progressEl   = $('.progress-bar span')
+    @timePassedEl = $('.time-passed')
+    @timeTotalEl  = $('.time-total')
+    @songListEl   = $('.album-song-list')
     
     @audio = $('audio').get 0
     $(@audio).bind 'canplay', @initDuration
     $(@audio).bind 'timeupdate', @updateProgress
+    @playPauseEl.click @togglePlay
+    @songListEl.on 'click', 'li a', @clickTrack
     
     @changeTrack 0
     @togglePlay()
-  
+
   initDuration: =>
     duration = parseInt(@audio.duration, 10)
     durationMins = Math.floor (duration / 60), 10
@@ -29,15 +24,15 @@ class ControlsView extends Backbone.View
     padding = ''
     padding = '0' if durationSecs < 10
     @timeTotalEl.text(durationMins + ':' + padding + durationSecs)
-  
+
   updateProgress: =>
     @updateProgressBar()
     @updateTimePassed()
-  
+
   updateProgressBar: ->    
     percentage = (@audio.currentTime / @audio.duration) * 100
     @progressEl.css(width: percentage + '%')
-  
+
   updateTimePassed: ->
     timePassed = parseInt(@audio.currentTime, 10)
     timePassedMins = Math.floor (timePassed / 60), 10
@@ -45,8 +40,8 @@ class ControlsView extends Backbone.View
     padding = ''
     padding = '0' if timePassedSecs < 10
     @timePassedEl.text(timePassedMins + ':' + padding + timePassedSecs)
-  
-  togglePlay: ->
+
+  togglePlay: =>
     if @audio.paused
       @audio.play()
       @setPauseIcon()
@@ -54,19 +49,32 @@ class ControlsView extends Backbone.View
       @audio.pause()
       @setPlayIcon()
     false
-  
+
   setPauseIcon: ->
     @playPauseEl.removeClass 'sprite-icons-Play'
     @playPauseEl.addClass 'sprite-icons-Pause'
-  
+
   setPlayIcon: ->
     @playPauseEl.removeClass 'sprite-icons-Pause'
     @playPauseEl.addClass 'sprite-icons-Play'
   
+  clickTrack: (event) =>
+    console.log 'click track event'
+    trackNo = $(event.target).parent().prevAll().length
+    @changeTrack trackNo
+    false
+
   changeTrack: (trackNo) ->
-    $('audio').attr 'src', "/api/audio/#{util.slugify @model.get('artist')}/#{util.slugify @model.get('name')}/#{util.slugify @model.get('songs')[trackNo]}"
-    $('ul.album-song-list.unstyled').trigger('updateNowPlaying', [trackNo])
+    @updateNowPlaying trackNo
+    $('audio').attr 'src', "/api/audio/#{util.slugify @artist}/#{util.slugify @album}/#{util.slugify @songs[trackNo]}"
     @togglePlay()
     @updateProgress()
+  
+  updateNowPlaying: (trackNo) ->
+    trackEl = @songListEl.find('li').eq trackNo
+    $('.now-playing .label').remove()
+    $('.now-playing').removeClass 'now-playing'
+    $(trackEl).addClass 'now-playing'
+    $(trackEl).html "<span class=\"label success\">now playing</span> #{trackEl.html()}"
 
-module.exports = ControlsView
+module.exports = Controls

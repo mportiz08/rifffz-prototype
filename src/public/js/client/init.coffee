@@ -1,5 +1,3 @@
-Router = require('routers/router')
-
-$ ->
-  window.router = new Router()
-  Backbone.history.start()
+require 'shared/import_modal'
+require 'albums/index'
+require 'albums/show'
