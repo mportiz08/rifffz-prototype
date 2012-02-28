@@ -3,6 +3,7 @@ util = require 'util'
 class Controls
   constructor: (@artist, @album, @songs) ->    
     @playPauseEl  = $('.play-pause')
+    @nextTrackEl  = $('.next-track')
     @progressEl   = $('.progress-bar span')
     @timePassedEl = $('.time-passed')
     @timeTotalEl  = $('.time-total')
@@ -11,7 +12,9 @@ class Controls
     @audio = $('audio').get 0
     $(@audio).bind 'canplay', @initDuration
     $(@audio).bind 'timeupdate', @updateProgress
+    
     @playPauseEl.click @togglePlay
+    @nextTrackEl.click @nextTrack
     @songListEl.on 'click', 'li a', @clickTrack
     
     @changeTrack 0
@@ -59,9 +62,13 @@ class Controls
     @playPauseEl.addClass 'sprite-icons-Play'
   
   clickTrack: (event) =>
-    console.log 'click track event'
     trackNo = $(event.target).parent().prevAll().length
     @changeTrack trackNo
+    false
+  
+  nextTrack: (event) =>
+    trackNo = $('.now-playing').prevAll().length + 1
+    @changeTrack trackNo unless trackNo > (@songs.length - 1)
     false
 
   changeTrack: (trackNo) ->
