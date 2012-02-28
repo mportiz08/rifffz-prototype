@@ -2,6 +2,12 @@
 
 my senior project, a browser based media player
 
-here's a (possibly up-to-date) screenshot of it
+## screenshots
 
-[![work in progress](http://f.cl.ly/items/0k2I020p1Y2C0t2K3W40/rifffz.jpg)](http://cl.ly/DU0a)
+### browsing library
+
+[![browsing library](http://f.cl.ly/items/1b0n2h1t1e191o333j2g/screen-01.png)](http://cl.ly/EZwn)
+
+### listening to an album
+
+[![listening to an album](http://cl.ly/EZf4/screen-02.png)](http://cl.ly/EZf4)
