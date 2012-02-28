@@ -38,7 +38,7 @@ a, a:visited, a:hover, a:active {
 }
 
 .top-bar {
-  background: rgba(34, 34, 34, 0.75);
+  background: rgba(34, 34, 34, 0.95);
   border-bottom: 2px solid #222;
   height: 15px;
   padding: 15px;
@@ -202,6 +202,10 @@ a, a:visited, a:hover, a:active {
   line-height: 25px;
   padding: 25px 15px;
   text-align: center;
+}
+
+#library .album-listing {
+  padding-top: 50px;
 }
 
 .sprite-icons-Wikipedia,
