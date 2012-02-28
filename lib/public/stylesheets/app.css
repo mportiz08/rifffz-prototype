@@ -170,7 +170,10 @@ a, a:visited, a:hover, a:active {
 }
 
 .media-grid a small {
-  font-size: 16px;
+  color: #666;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 #library {
@@ -179,7 +182,7 @@ a, a:visited, a:hover, a:active {
 
 #library .media-grid a {
   background-size: contain;
-  border: 1px solid #000;
+  border: 2px solid #333;
   display: block;
   padding: 0;
   width: 210px;
@@ -187,13 +190,14 @@ a, a:visited, a:hover, a:active {
 }
 
 #library .media-grid a:hover {
-  border: 1px solid #fff;
+  border: 2px solid #222;
 }
 
 #library .media-grid a .hover {
-  background: rgba(255, 255, 255, 0.75);
-  color: #000;
+  background: rgba(255, 255, 255, 0.85);
+  color: #333;
   font-size: 26px;
+  font-weight: bold;
   height: 160px;
   line-height: 25px;
   padding: 25px 15px;
