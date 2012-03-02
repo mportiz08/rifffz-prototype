@@ -17,6 +17,28 @@ a, a:visited, a:hover, a:active {
   width: 100%;
 }
 
+@-webkit-keyframes inflate-cover-big {
+  0% {
+    height: 1px;
+    margin: 226px;
+    width: 1px;
+  }
+}
+
+@-webkit-keyframes slide-in-songs {
+  0% {
+    margin-right: -460px;
+  }
+}
+
+.album-cover {
+  -webkit-animation: inflate-cover-big 0.5s ease-out;
+}
+
+.album-info h1, .album-info h2, .album-info small, .album-song-list {
+  -webkit-animation: slide-in-songs 0.5s ease-out;
+}
+
 #main.container {
   padding-top: 75px;
 }
