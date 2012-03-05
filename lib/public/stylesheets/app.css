@@ -21,6 +21,16 @@ a, a:visited, a:hover, a:active {
   0% {
     height: 1px;
     margin: 226px;
+    opacity: 0;
+    width: 1px;
+  }
+}
+
+@-webkit-keyframes inflate-cover-small {
+  0% {
+    height: 1px;
+    margin: 100px;
+    opacity: 0;
     width: 1px;
   }
 }
@@ -37,6 +47,10 @@ a, a:visited, a:hover, a:active {
 
 .album-info h1, .album-info h2, .album-info small, .album-song-list {
   -webkit-animation: slide-in-songs 0.5s ease-out;
+}
+
+#library .media-grid a {
+  -webkit-animation: inflate-cover-small 0.25s ease-out;
 }
 
 #main.container {
@@ -193,6 +207,7 @@ a, a:visited, a:hover, a:active {
 
 .media-grid a small {
   color: #666;
+  font-family: 'Helvetica Neue', 'Helvetica', arial, sans-serif;
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
@@ -218,8 +233,9 @@ a, a:visited, a:hover, a:active {
 #library .media-grid a .hover {
   background: rgba(255, 255, 255, 0.85);
   color: #333;
+  font-family: 'Ubuntu', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
   font-size: 26px;
-  font-weight: bold;
+  /*font-weight: bold;*/
   height: 160px;
   line-height: 25px;
   padding: 25px 15px;
