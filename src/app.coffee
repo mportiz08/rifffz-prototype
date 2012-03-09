@@ -56,7 +56,7 @@ app.post '/api/album', (req, res) ->
               artist: artist
               album: album
             if albums.length == list.length
-              res.send albums
+              res.send albums: albums
 
 exports.loadApp = (port) ->
   lib.on 'loaded', ->
