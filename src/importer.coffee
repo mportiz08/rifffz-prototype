@@ -4,13 +4,26 @@ ID3  = require 'id3'
 path = require 'path'
 util = require('./util').Util
 
-class Importer  
+class Importer
+  albumExistsAt: (absPath, callback) ->
+    fs.readdir absPath, (err, paths) =>
+      mp3s = (path.join(absPath, mp3) for mp3 in util.onlyMP3s(paths))
+      callback (mp3s.length > 0)
+  
   importAlbum: (dir, callback) ->
     fs.readdir dir, (err, files) =>
       mp3s = (path.join(dir, mp3) for mp3 in util.onlyMP3s(files))
       @getAlbumInfo mp3s[0], (info) =>
         info.album.songs = @getSongs mp3s
         callback info
+  
+  importAlbums: (dir, callback) ->
+    albums = []
+    fs.readdir dir, (err, subdirs) =>
+      _.each subdirs, (subdir) =>
+        @importAlbum path.join(dir, subdir), (info) ->
+          albums.push info
+          callback albums if albums.length == subdirs.length
   
   getAlbumInfo: (file, callback) ->
     fs.readFile file, (err, data) ->

@@ -1,3 +1,4 @@
 node_modules/
 Procfile.dev
 bin/rifffz-seed-library
+test/data

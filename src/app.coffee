@@ -1,3 +1,4 @@
+_          = require 'underscore'
 express    = require 'express'
 {Importer} = require './importer'
 lib        = require('./library').loadLibrary()
@@ -39,11 +40,23 @@ app.get '/api/album/:artist/:album', (req, res) ->
 
 app.post '/api/album', (req, res) ->
   i = new Importer()
-  i.importAlbum req.body.path, (info) ->
-    lib.addAlbum info, (artist, album) ->
-      res.send
-        artist: artist
-        album: album
+  i.albumExistsAt req.body.path, (isAlbum) ->
+    if isAlbum
+      i.importAlbum req.body.path, (info) ->
+        lib.addAlbum info, (artist, album) ->
+          res.send
+            artist: artist
+            album: album
+    else
+      i.importAlbums req.body.path, (list) ->
+        albums = []
+        _.each list, (info) ->
+          lib.addAlbum info, (artist, album) ->
+            albums.push
+              artist: artist
+              album: album
+            if albums.length == list.length
+              res.send albums
 
 exports.loadApp = (port) ->
   lib.on 'loaded', ->
